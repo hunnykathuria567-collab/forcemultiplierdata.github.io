@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Platform Inspector | Force Multiplier Data</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a; /* Deep elegant dark slate */
+            color: #f8fafc;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <nav class="border-b border-gray-800 bg-gray-900/50 backdrop-blur-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex-shrink-0 text-xl font-bold tracking-wider text-blue-500">
+                    FORCE<span class="text-white">MULTIPLIER</span>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="index.html" class="hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium transition-colors">Home</a>
+                        <a href="platform-inspector.html" class="text-blue-500 px-3 py-2 rounded-md text-sm font-medium">Platform Inspector</a>
+                        <a href="wicket-keeper.html" class="hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium transition-colors">Wicket Keeper & JARVIS</a>
+                        <a href="consulting.html" class="hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium transition-colors">Consulting</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
+        <h1 class="text-4xl md:text-5xl font-bold mb-4 tracking-tight">
+            Stop the <span class="text-red-500">Compute Bleed.</span>
+        </h1>
+        <p class="text-xl text-gray-400 max-w-2xl mx-auto mb-8">
+            Our Platform Inspector dives into your Databricks, AWS, or Snowflake logs to identify inefficient configurations and bloated pipelines. Don't pay for idle air.
+        </p>
+        <button class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full transition-all shadow-[0_0_15px_rgba(37,99,235,0.5)]">
+            Book a Log Audit (₹9,999)
+        </button>
+    </header>
+
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="bg-gray-800 rounded-xl border border-gray-700 p-6 shadow-2xl">
+            <div class="flex justify-between items-center mb-6 border-b border-gray-700 pb-4">
+                <h2 class="text-xl font-semibold">Live Pipeline Analytics (Last 24h)</h2>
+                <span class="text-sm bg-green-900/50 text-green-400 py-1 px-3 rounded-full border border-green-800">Healthy</span>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8 text-center">
+                <div class="bg-gray-900 p-4 rounded-lg border border-gray-700">
+                    <div class="text-sm text-gray-400 mb-1">Total Ingestion</div>
+                    <div class="text-2xl font-bold text-white">1.52M</div>
+                </div>
+                <div class="bg-gray-900 p-4 rounded-lg border border-gray-700">
+                    <div class="text-sm text-gray-400 mb-1">Gate 1 Failures</div>
+                    <div class="text-2xl font-bold text-yellow-500">250K</div>
+                </div>
+                <div class="bg-gray-900 p-4 rounded-lg border border-gray-700">
+                    <div class="text-sm text-gray-400 mb-1">Recovered Records</div>
+                    <div class="text-2xl font-bold text-blue-400">225K</div>
+                </div>
+                <div class="bg-gray-900 p-4 rounded-lg border border-gray-700 shadow-[0_0_15px_rgba(34,197,94,0.15)]">
+                    <div class="text-sm text-gray-400 mb-1">Compute Cost Avoidance ($)</div>
+                    <div class="text-2xl font-bold text-green-400">+ $4,230</div>
+                </div>
+            </div>
+
+            <div class="mt-8 border-t border-gray-700 pt-6">
+                <h3 class="text-lg font-semibold mb-4 text-gray-300">Agentic AI Performance Ledger</h3>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-sm text-gray-400">
+                        <thead class="bg-gray-900 text-gray-300 uppercase">
+                            <tr>
+                                <th class="px-4 py-3 rounded-tl-lg">Timestamp</th>
+                                <th class="px-4 py-3">Rejected At</th>
+                                <th class="px-4 py-3">Agent Action</th>
+                                <th class="px-4 py-3">Confidence</th>
+                                <th class="px-4 py-3 rounded-tr-lg">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b border-gray-800 hover:bg-gray-750 transition-colors">
+                                <td class="px-4 py-3 font-mono">08:42:15</td>
+                                <td class="px-4 py-3">Gate 1 (Format)</td>
+                                <td class="px-4 py-3">Repair Date Format</td>
+                                <td class="px-4 py-3 text-green-400">98%</td>
+                                <td class="px-4 py-3"><span class="text-green-500">✓ Recovered</span></td>
+                            </tr>
+                            <tr class="border-b border-gray-800 hover:bg-gray-750 transition-colors">
+                                <td class="px-4 py-3 font-mono">08:45:22</td>
+                                <td class="px-4 py-3">Gate 2 (Missing ID)</td>
+                                <td class="px-4 py-3">Lookup CRM Database</td>
+                                <td class="px-4 py-3 text-green-400">92%</td>
+                                <td class="px-4 py-3"><span class="text-green-500">✓ Recovered</span></td>
+                            </tr>
+                            <tr class="hover:bg-gray-750 transition-colors">
+                                <td class="px-4 py-3 font-mono">08:51:10</td>
+                                <td class="px-4 py-3">Gate 3 (Taxonomy)</td>
+                                <td class="px-4 py-3 text-yellow-500">Flagged to Human (Teams Card Sent)</td>
+                                <td class="px-4 py-3 text-red-400">12%</td>
+                                <td class="px-4 py-3"><span class="text-red-500">⚠ Manual Review</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div>
+                <h3 class="text-3xl font-bold mb-4">How We Slash Your Bill</h3>
+                <ul class="space-y-4 text-gray-400">
+                    <li class="flex items-start">
+                        <span class="text-blue-500 mr-2">✓</span>
+                        <span><strong>Short-Circuit Protocols:</strong> We implement rigid deterministic gates before complex extractions begin. If malformed data is detected, the extraction halts instantly.</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-blue-500 mr-2">✓</span>
+                        <span><strong>Zero Cluster Restarts:</strong> By routing corrupted payloads away from PySpark jobs, we eliminate the primary cause of ETL failures and cluster reboots.</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-blue-500 mr-2">✓</span>
+                        <span><strong>The Ingestion Funnel:</strong> You only pay to process and extract high-fidelity data downstream to your Silver/Gold layers.</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="bg-gray-800 p-8 rounded-xl border border-gray-700">
+                 <h4 class="text-xl font-semibold mb-4 border-b border-gray-700 pb-2">The ROI Equation</h4>
+                 <div class="space-y-4">
+                     <div class="flex justify-between items-center">
+                         <span class="text-gray-400">Current Monthly Compute Waste:</span>
+                         <span class="text-red-400 font-mono">~30-40%</span>
+                     </div>
+                     <div class="flex justify-between items-center">
+                         <span class="text-gray-400">Engineer Hours Lost Debugging:</span>
+                         <span class="text-red-400 font-mono">15+ hrs/week</span>
+                     </div>
+                     <div class="flex justify-between items-center font-bold text-lg pt-4 border-t border-gray-700">
+                         <span class="text-white">Expected Optimization:</span>
+                         <span class="text-green-500">Immediate</span>
+                     </div>
+                 </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="border-t border-gray-800 mt-12 py-8 text-center text-gray-500 text-sm">
+        <p>&copy; 2026 Force Multiplier Data. Enterprise Data Engineering & AI Automation.</p>
+    </footer>
+
+</body>
+</html>
