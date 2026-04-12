@@ -1,27 +1,23 @@
-<!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Consulting | Force Multiplier Data</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;600;700;800&display=swap');
-        body { font-family: 'Inter', sans-serif; background-color: #050505; color: #f8fafc; overflow-x: hidden; }
-        h1, h2, h3, h4, .brand-font { font-family: 'Outfit', sans-serif; }
-    </style>
-</head>
-<body class="antialiased relative">
-    <header class="relative pt-48 pb-32 overflow-hidden flex flex-col items-center text-center">
-        <div class="absolute inset-0 z-0">
-            <video id="consultingVideo" autoplay loop muted playsinline class="w-full h-full object-cover opacity-40">
-                <source src="https://res.cloudinary.com/ddritqes2/video/upload/v1775953076/boutique-consulting-video_uprtsg.mp4" type="video/mp4">
-            </video>
-            <div class="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/70 to-transparent"></div>
+<header class="relative min-h-[90vh] flex items-center overflow-hidden">
+    <div class="absolute inset-0 z-0">
+        <video id="consultingVideo" autoplay loop muted playsinline class="w-full h-full object-cover opacity-50">
+            <source src="https://res.cloudinary.com/ddritqes2/video/upload/v1775953076/boutique-consulting-video_uprtsg.mp4" type="video/mp4">
+        </video>
+        <div class="absolute inset-0 bg-gradient-to-r from-[#050505] via-transparent to-[#050505]/80"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 relative z-10 w-full flex justify-end">
+        <div class="relative group max-w-lg">
+            <div class="absolute inset-0 bg-purple-600/10 blur-3xl rounded-full scale-150 opacity-50"></div>
+            <div class="relative bg-[#0a0a0a]/90 backdrop-blur-2xl border border-white/10 p-10 rounded-[2rem] shadow-2xl">
+                <img src="https://res.cloudinary.com/ddritqes2/image/upload/v1775953424/hero-image-bg-removed_jn60nc.png" class="absolute -top-20 -left-20 w-40 opacity-40 pointer-events-none" />
+                <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">Elite Strategy. Boutique <span class="text-purple-500">Budgets.</span></h1>
+                <ul class="space-y-4 mb-8 text-gray-300">
+                    <li class="flex items-start"><span class="text-purple-500 mr-2">✦</span><strong>CTO Discovery:</strong> 90-minute protocol to untangle technical debt and map your future.</li>
+                    <li class="flex items-start"><span class="text-purple-500 mr-2">✦</span><strong>Medallion POC:</strong> High-end data architecture roadmaps tailored for agile AI startups.</li>
+                </ul>
+                <button class="w-full bg-yellow-600 hover:bg-yellow-500 text-white font-bold py-4 rounded-xl shadow-lg transition-all">Book the Roadmap</button>
+            </div>
         </div>
-        <h1 class="text-5xl md:text-7xl font-extrabold mb-6">Fortune 500 Strategy.<br><span class="text-yellow-500">Boutique Budgets.</span></h1>
-        <p class="text-xl text-gray-400 mb-10 max-w-2xl">Expert architecture roadmaps and POCs to scale your ecosystem.</p>
-        <button class="bg-yellow-600 hover:bg-yellow-500 text-white font-bold py-4 px-8 rounded-full shadow-lg">Book the JARVIS Roadmap (₹3,999)</button>
-    </header>
-</body>
-</html>
+    </div>
+</header>
