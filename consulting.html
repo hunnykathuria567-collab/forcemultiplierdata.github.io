@@ -9,94 +9,19 @@
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;600;700;800&display=swap');
         body { font-family: 'Inter', sans-serif; background-color: #050505; color: #f8fafc; overflow-x: hidden; }
         h1, h2, h3, h4, .brand-font { font-family: 'Outfit', sans-serif; }
-        .ambient-glow { position: absolute; border-radius: 50%; filter: blur(120px); opacity: 0.4; z-index: -1; animation: pulse 8s infinite alternate; }
-        @keyframes pulse { 0% { transform: scale(1); opacity: 0.3; } 100% { transform: scale(1.1); opacity: 0.5; } }
     </style>
 </head>
 <body class="antialiased relative">
-
-    <div class="ambient-glow bg-yellow-600/20 w-[600px] h-[600px] top-[-100px] left-[-200px]"></div>
-    <div class="ambient-glow bg-orange-600/10 w-[500px] h-[500px] bottom-[20%] right-[-150px]" style="animation-delay: -3s;"></div>
-
-    <nav class="fixed w-full z-50 border-b border-white/10 bg-black/40 backdrop-blur-xl">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-20">
-                <div class="flex-shrink-0 text-2xl font-extrabold tracking-widest brand-font">
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600">FORCE</span><span class="text-white">MULTIPLIER</span>
-                </div>
-                <div class="hidden md:flex space-x-1 p-1 bg-white/5 border border-white/10 rounded-full backdrop-blur-md">
-                    <a href="index.html" class="text-gray-300 hover:text-white hover:bg-white/5 px-5 py-2 rounded-full text-sm font-medium transition-all">Home</a>
-                    <a href="platform-inspector.html" class="text-gray-300 hover:text-white hover:bg-white/5 px-5 py-2 rounded-full text-sm font-medium transition-all">Platform Inspector</a>
-                    <a href="wicket-keeper.html" class="text-gray-300 hover:text-white hover:bg-white/5 px-5 py-2 rounded-full text-sm font-medium transition-all">Wicket Keeper</a>
-                    <a href="prospect-pipeline.html" class="text-gray-300 hover:text-white hover:bg-white/5 px-5 py-2 rounded-full text-sm font-medium transition-all">B2B Leads</a>
-                    <a href="consulting.html" class="bg-white/10 text-white px-5 py-2 rounded-full text-sm font-medium transition-all shadow-sm">Consulting</a>
-                </div>
-            </div>
+    <header class="relative pt-48 pb-32 overflow-hidden flex flex-col items-center text-center">
+        <div class="absolute inset-0 z-0">
+            <video id="consultingVideo" autoplay loop muted playsinline class="w-full h-full object-cover opacity-40">
+                <source src="https://res.cloudinary.com/ddritqes2/video/upload/v1775953076/boutique-consulting-video_uprtsg.mp4" type="video/mp4">
+            </video>
+            <div class="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/70 to-transparent"></div>
         </div>
-    </nav>
-
-    <header class="relative pt-40 pb-16 lg:pt-48 lg:pb-20 overflow-hidden flex flex-col items-center text-center px-4 sm:px-6 lg:px-8">
-        <div class="inline-flex items-center space-x-2 bg-white/5 border border-white/10 rounded-full px-4 py-1.5 mb-8 backdrop-blur-sm">
-            <span class="flex h-2 w-2 rounded-full bg-yellow-500 animate-pulse"></span>
-            <span class="text-xs font-semibold uppercase tracking-wider text-gray-300">CTO as a Service</span>
-        </div>
-        <h1 class="text-5xl md:text-7xl font-extrabold mb-6 tracking-tight leading-tight">
-            Fortune 500 Strategy.<br>
-            <span class="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-500">Boutique Budgets.</span>
-        </h1>
-        <p class="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-10 font-light">
-            No in-house Data Engineering lead? We provide expert architecture roadmaps and actionable POCs to scale your data ecosystem.
-        </p>
-        <button class="bg-yellow-600 hover:bg-yellow-500 text-white font-bold py-4 px-8 rounded-full transition-all shadow-[0_0_20px_rgba(202,138,4,0.3)] hover:shadow-[0_0_30px_rgba(202,138,4,0.5)]">
-            Book the JARVIS Roadmap (₹3,999)
-        </button>
+        <h1 class="text-5xl md:text-7xl font-extrabold mb-6">Fortune 500 Strategy.<br><span class="text-yellow-500">Boutique Budgets.</span></h1>
+        <p class="text-xl text-gray-400 mb-10 max-w-2xl">Expert architecture roadmaps and POCs to scale your ecosystem.</p>
+        <button class="bg-yellow-600 hover:bg-yellow-500 text-white font-bold py-4 px-8 rounded-full shadow-lg">Book the JARVIS Roadmap (₹3,999)</button>
     </header>
-
-    <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 relative z-10">
-        <div class="bg-[#0a0a0a]/80 backdrop-blur-xl p-10 rounded-3xl border border-white/5 shadow-2xl relative overflow-hidden">
-            <div class="absolute top-0 right-0 w-32 h-32 bg-yellow-500/10 blur-3xl rounded-full"></div>
-            
-            <h2 class="text-3xl font-bold mb-10 text-white border-b border-white/10 pb-6">The 90-Minute Discovery Protocol</h2>
-            
-            <ul class="space-y-8 text-gray-300 font-light">
-                <li class="flex items-start">
-                    <div class="flex-shrink-0 w-12 h-12 bg-yellow-500/10 rounded-full flex items-center justify-center border border-yellow-500/20 mr-6">
-                        <span class="text-yellow-400 font-bold text-lg brand-font">1</span>
-                    </div>
-                    <div class="pt-2">
-                        <h4 class="text-xl font-semibold text-white mb-2">Ecosystem Mapping</h4>
-                        <p class="leading-relaxed">We analyze your current architecture, data volume, and tooling stack to identify immediate bottlenecks.</p>
-                    </div>
-                </li>
-                
-                <li class="flex items-start">
-                    <div class="flex-shrink-0 w-12 h-12 bg-yellow-500/10 rounded-full flex items-center justify-center border border-yellow-500/20 mr-6">
-                        <span class="text-yellow-400 font-bold text-lg brand-font">2</span>
-                    </div>
-                    <div class="pt-2">
-                        <h4 class="text-xl font-semibold text-white mb-2">Pain Point Resolution</h4>
-                        <p class="leading-relaxed">Targeted strategies to address failed pipelines, dirty data ingestion, and unoptimized cloud billing.</p>
-                    </div>
-                </li>
-                
-                <li class="flex items-start">
-                    <div class="flex-shrink-0 w-12 h-12 bg-yellow-500/10 rounded-full flex items-center justify-center border border-yellow-500/20 mr-6">
-                        <span class="text-yellow-400 font-bold text-lg brand-font">3</span>
-                    </div>
-                    <div class="pt-2">
-                        <h4 class="text-xl font-semibold text-white mb-2">Enterprise Delivery</h4>
-                        <p class="leading-relaxed">You receive a customized, detailed level Architecture Proposal (Medallion Greenfield Implementation) ready for internal review or POC rollout.</p>
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </section>
-
-    <footer class="border-t border-white/10 mt-20 bg-black/50 backdrop-blur-lg z-10 relative">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex flex-col md:flex-row justify-between items-center">
-            <div class="mb-4 md:mb-0"><span class="text-lg font-bold brand-font text-white">FORCE<span class="text-blue-500">MULTIPLIER</span></span></div>
-            <p class="text-gray-500 text-sm font-light">&copy; 2026 Force Multiplier Data. Engineering & AI Automation.</p>
-        </div>
-    </footer>
 </body>
 </html>
