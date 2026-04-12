@@ -9,86 +9,19 @@
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;600;700;800&display=swap');
         body { font-family: 'Inter', sans-serif; background-color: #050505; color: #f8fafc; overflow-x: hidden; }
         h1, h2, h3, h4, .brand-font { font-family: 'Outfit', sans-serif; }
-        .ambient-glow { position: absolute; border-radius: 50%; filter: blur(120px); opacity: 0.4; z-index: -1; animation: pulse 8s infinite alternate; }
-        @keyframes pulse { 0% { transform: scale(1); opacity: 0.3; } 100% { transform: scale(1.1); opacity: 0.5; } }
     </style>
 </head>
 <body class="antialiased relative">
-
-    <div class="ambient-glow bg-purple-600/20 w-[600px] h-[600px] top-[-100px] right-[-100px]"></div>
-    <div class="ambient-glow bg-pink-600/10 w-[500px] h-[500px] bottom-[20%] left-[-200px]" style="animation-delay: -3s;"></div>
-
-    <nav class="fixed w-full z-50 border-b border-white/10 bg-black/40 backdrop-blur-xl">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-20">
-                <div class="flex-shrink-0 text-2xl font-extrabold tracking-widest brand-font">
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600">FORCE</span><span class="text-white">MULTIPLIER</span>
-                </div>
-                <div class="hidden md:flex space-x-1 p-1 bg-white/5 border border-white/10 rounded-full backdrop-blur-md">
-                    <a href="index.html" class="text-gray-300 hover:text-white hover:bg-white/5 px-5 py-2 rounded-full text-sm font-medium transition-all">Home</a>
-                    <a href="platform-inspector.html" class="text-gray-300 hover:text-white hover:bg-white/5 px-5 py-2 rounded-full text-sm font-medium transition-all">Platform Inspector</a>
-                    <a href="wicket-keeper.html" class="text-gray-300 hover:text-white hover:bg-white/5 px-5 py-2 rounded-full text-sm font-medium transition-all">Wicket Keeper</a>
-                    <a href="prospect-pipeline.html" class="bg-white/10 text-white px-5 py-2 rounded-full text-sm font-medium transition-all shadow-sm">B2B Leads</a>
-                    <a href="consulting.html" class="text-gray-300 hover:text-white hover:bg-white/5 px-5 py-2 rounded-full text-sm font-medium transition-all">Consulting</a>
-                </div>
-            </div>
+    <header class="relative pt-48 pb-32 overflow-hidden flex flex-col items-center text-center">
+        <div class="absolute inset-0 z-0">
+            <video id="prospectVideo" autoplay loop muted playsinline class="w-full h-full object-cover opacity-40">
+                <source src="https://res.cloudinary.com/ddritqes2/video/upload/v1775953087/prospect-video_nvc9iy.mp4" type="video/mp4">
+            </video>
+            <div class="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/70 to-transparent"></div>
         </div>
-    </nav>
-
-    <header class="relative pt-40 pb-16 lg:pt-48 lg:pb-20 overflow-hidden flex flex-col items-center text-center px-4 sm:px-6 lg:px-8">
-        <div class="inline-flex items-center space-x-2 bg-white/5 border border-white/10 rounded-full px-4 py-1.5 mb-8 backdrop-blur-sm">
-            <span class="flex h-2 w-2 rounded-full bg-purple-500 animate-pulse"></span>
-            <span class="text-xs font-semibold uppercase tracking-wider text-gray-300">Automated B2B Lead Engine</span>
-        </div>
-        <h1 class="text-5xl md:text-7xl font-extrabold mb-6 tracking-tight">
-            Stop Emailing <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500">Ghosts.</span>
-        </h1>
-        <p class="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-10 font-light">
-            The Prospect Pipeline uses enterprise data engineering gates to deliver 100% verified, AI-enriched B2B leads directly to your CRM.
-        </p>
-        <button class="bg-purple-600 hover:bg-purple-500 text-white font-bold py-4 px-8 rounded-full transition-all shadow-[0_0_20px_rgba(147,51,234,0.3)] hover:shadow-[0_0_30px_rgba(147,51,234,0.5)]">
-            Get 500 Verified Leads (₹35,000/mo)
-        </button>
+        <h1 class="text-5xl md:text-7xl font-extrabold mb-6 tracking-tight">Stop Emailing <span class="text-purple-500">Ghosts.</span></h1>
+        <p class="text-xl text-gray-400 mb-10 max-w-2xl">100% verified, AI-enriched B2B leads delivered to your CRM.</p>
+        <button class="bg-purple-600 hover:bg-purple-500 text-white font-bold py-4 px-8 rounded-full shadow-lg">Get 500 Verified Leads (₹35,000/mo)</button>
     </header>
-
-    <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 relative z-10">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            
-            <div class="bg-[#0a0a0a]/80 backdrop-blur-xl p-8 rounded-3xl border border-white/5 hover:border-white/10 transition-colors shadow-2xl relative">
-                <div class="w-14 h-14 bg-white/5 rounded-2xl flex items-center justify-center border border-white/10 mb-6">
-                    <svg class="w-7 h-7 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-                </div>
-                <h3 class="text-2xl font-bold mb-3 text-white">Gate 1: Extraction</h3>
-                <p class="text-gray-400 font-light leading-relaxed">We scrape niche-specific decision-makers across Indian SaaS, avoiding generic or low-tier job titles.</p>
-            </div>
-
-            <div class="bg-[#0a0a0a]/80 backdrop-blur-xl p-8 rounded-3xl border border-white/5 hover:border-white/10 transition-colors shadow-2xl relative">
-                <div class="w-14 h-14 bg-white/5 rounded-2xl flex items-center justify-center border border-white/10 mb-6">
-                    <svg class="w-7 h-7 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
-                </div>
-                <h3 class="text-2xl font-bold mb-3 text-white">Gate 2: Verification</h3>
-                <p class="text-gray-400 font-light leading-relaxed">Server-level SMTP pings ensure zero bounces. We filter out catch-all and dead domains automatically.</p>
-            </div>
-
-            <div class="bg-purple-900/10 backdrop-blur-xl p-8 rounded-3xl border border-purple-500/30 shadow-[0_0_30px_rgba(147,51,234,0.15)] relative overflow-hidden">
-                <div class="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-transparent"></div>
-                <div class="relative z-10">
-                    <div class="w-14 h-14 bg-purple-500/20 rounded-2xl flex items-center justify-center border border-purple-500/30 mb-6">
-                        <svg class="w-7 h-7 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-3 text-white">Gate 3: AI Enrichment</h3>
-                    <p class="text-gray-300 font-light leading-relaxed">LLMs scan the prospect's company website to draft a highly personalized "Icebreaker" sentence for your sales team.</p>
-                </div>
-            </div>
-            
-        </div>
-    </section>
-
-    <footer class="border-t border-white/10 mt-20 bg-black/50 backdrop-blur-lg z-10 relative">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex flex-col md:flex-row justify-between items-center">
-            <div class="mb-4 md:mb-0"><span class="text-lg font-bold brand-font text-white">FORCE<span class="text-blue-500">MULTIPLIER</span></span></div>
-            <p class="text-gray-500 text-sm font-light">&copy; 2026 Force Multiplier Data. Engineering & AI Automation.</p>
-        </div>
-    </footer>
 </body>
 </html>
