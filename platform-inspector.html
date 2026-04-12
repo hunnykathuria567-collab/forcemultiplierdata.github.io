@@ -9,170 +9,48 @@
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;600;700;800&display=swap');
         body { font-family: 'Inter', sans-serif; background-color: #050505; color: #f8fafc; overflow-x: hidden; }
         h1, h2, h3, h4, .brand-font { font-family: 'Outfit', sans-serif; }
-        .ambient-glow { position: absolute; border-radius: 50%; filter: blur(120px); opacity: 0.4; z-index: -1; animation: pulse 8s infinite alternate; }
-        @keyframes pulse { 0% { transform: scale(1); opacity: 0.3; } 100% { transform: scale(1.1); opacity: 0.5; } }
     </style>
 </head>
 <body class="antialiased relative">
 
-    <div class="ambient-glow bg-blue-600/20 w-[600px] h-[600px] top-[-100px] left-[-200px]"></div>
-    <div class="ambient-glow bg-red-600/10 w-[500px] h-[500px] top-[30%] right-[-150px]" style="animation-delay: -3s;"></div>
-
     <nav class="fixed w-full z-50 border-b border-white/10 bg-black/40 backdrop-blur-xl">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-20">
-                <div class="flex-shrink-0 text-2xl font-extrabold tracking-widest brand-font">
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600">FORCE</span><span class="text-white">MULTIPLIER</span>
-                </div>
-                <div class="hidden md:flex space-x-1 p-1 bg-white/5 border border-white/10 rounded-full backdrop-blur-md">
-                    <a href="index.html" class="text-gray-300 hover:text-white hover:bg-white/5 px-5 py-2 rounded-full text-sm font-medium transition-all">Home</a>
-                    <a href="platform-inspector.html" class="bg-white/10 text-white px-5 py-2 rounded-full text-sm font-medium transition-all shadow-sm">Platform Inspector</a>
-                    <a href="wicket-keeper.html" class="text-gray-300 hover:text-white hover:bg-white/5 px-5 py-2 rounded-full text-sm font-medium transition-all">Wicket Keeper</a>
-                    <a href="prospect-pipeline.html" class="text-gray-300 hover:text-white hover:bg-white/5 px-5 py-2 rounded-full text-sm font-medium transition-all">B2B Leads</a>
-                    <a href="consulting.html" class="text-gray-300 hover:text-white hover:bg-white/5 px-5 py-2 rounded-full text-sm font-medium transition-all">Consulting</a>
-                </div>
+        <div class="max-w-7xl mx-auto px-4 flex items-center justify-between h-20">
+            <a href="index.html" class="text-2xl font-extrabold brand-font text-white">FORCE<span class="text-blue-500">MULTIPLIER</span></a>
+            <div class="hidden md:flex space-x-2 bg-white/5 border border-white/10 rounded-full p-1">
+                <a href="index.html" class="text-gray-300 px-5 py-2 rounded-full text-sm">Home</a>
+                <div class="relative group">
+                    <button class="bg-white/10 text-white px-5 py-2 rounded-full text-sm">Products & Services</button>
+                    </div>
             </div>
         </div>
     </nav>
 
-    <header class="relative pt-40 pb-16 lg:pt-48 lg:pb-20 overflow-hidden flex flex-col items-center text-center px-4 sm:px-6 lg:px-8">
-        <div class="inline-flex items-center space-x-2 bg-white/5 border border-white/10 rounded-full px-4 py-1.5 mb-8 backdrop-blur-sm">
-            <span class="flex h-2 w-2 rounded-full bg-blue-500 animate-pulse"></span>
-            <span class="text-xs font-semibold uppercase tracking-wider text-gray-300">Cloud Cost Optimization</span>
+    <header class="relative pt-48 pb-32 overflow-hidden flex flex-col items-center text-center">
+        <div class="absolute inset-0 z-0">
+            <video id="inspectorVideo" autoplay loop muted playsinline class="w-full h-full object-cover opacity-40">
+                <source src="https://res.cloudinary.com/ddritqes2/video/upload/v1775953080/platform-inspector-video_ujklav.mp4" type="video/mp4">
+            </video>
+            <div class="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/70 to-transparent"></div>
         </div>
-        <h1 class="text-5xl md:text-6xl font-extrabold mb-6 tracking-tight">
-            Stop the <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-red-600">Compute Bleed.</span>
-        </h1>
-        <p class="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-10 font-light">
-            Our Platform Inspector dives into your Databricks, AWS, or Snowflake logs to identify inefficient configurations and bloated pipelines. Don't pay for idle air.
-        </p>
-        <button class="bg-blue-600 hover:bg-blue-500 text-white font-bold py-4 px-8 rounded-full transition-all shadow-[0_0_20px_rgba(37,99,235,0.3)] hover:shadow-[0_0_30px_rgba(37,99,235,0.5)]">
-            Book a Log Audit (₹9,999)
-        </button>
+        <div class="relative z-10">
+            <h1 class="text-5xl md:text-6xl font-extrabold mb-6">Stop the <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-red-600">Compute Bleed.</span></h1>
+            <p class="text-xl text-gray-300 mb-10 max-w-2xl">Don't pay for idle air. We audit your logs to identify inefficiency.</p>
+            <button class="bg-blue-600 hover:bg-blue-500 text-white font-bold py-4 px-8 rounded-full shadow-lg">Book a Log Audit (₹9,999)</button>
+        </div>
     </header>
 
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 relative z-10">
-        <div class="bg-[#0a0a0a]/80 backdrop-blur-xl rounded-3xl border border-white/5 p-8 shadow-2xl">
-            <div class="flex justify-between items-center mb-8 border-b border-white/10 pb-4">
-                <h2 class="text-2xl font-semibold text-white">Live Pipeline Analytics (Last 24h)</h2>
-                <span class="text-xs font-semibold bg-green-500/10 text-green-400 py-1.5 px-4 rounded-full border border-green-500/20 flex items-center"><span class="w-2 h-2 rounded-full bg-green-400 mr-2"></span>Healthy</span>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-10 text-center">
-                <div class="bg-white/5 p-6 rounded-2xl border border-white/5">
-                    <div class="text-sm text-gray-400 mb-2 uppercase tracking-wide">Total Ingestion</div>
-                    <div class="text-3xl font-bold text-white">1.52M</div>
-                </div>
-                <div class="bg-white/5 p-6 rounded-2xl border border-white/5">
-                    <div class="text-sm text-gray-400 mb-2 uppercase tracking-wide">Gate 1 Failures</div>
-                    <div class="text-3xl font-bold text-yellow-400">250K</div>
-                </div>
-                <div class="bg-white/5 p-6 rounded-2xl border border-white/5">
-                    <div class="text-sm text-gray-400 mb-2 uppercase tracking-wide">Recovered Records</div>
-                    <div class="text-3xl font-bold text-blue-400">225K</div>
-                </div>
-                <div class="bg-green-500/5 p-6 rounded-2xl border border-green-500/20 relative overflow-hidden">
-                    <div class="absolute inset-0 bg-green-500/10 blur-xl"></div>
-                    <div class="relative z-10">
-                        <div class="text-sm text-green-400/80 mb-2 uppercase tracking-wide">Cost Avoidance ($)</div>
-                        <div class="text-3xl font-bold text-green-400">+ $4,230</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="border-t border-white/10 pt-8">
-                <h3 class="text-xl font-semibold mb-6 text-white">Agentic AI Performance Ledger</h3>
-                <div class="overflow-x-auto rounded-xl border border-white/5 bg-black/40">
-                    <table class="w-full text-left text-sm text-gray-300">
-                        <thead class="bg-white/5 text-gray-400 uppercase text-xs tracking-wider border-b border-white/10">
-                            <tr>
-                                <th class="px-6 py-4">Timestamp</th>
-                                <th class="px-6 py-4">Rejected At</th>
-                                <th class="px-6 py-4">Agent Action</th>
-                                <th class="px-6 py-4">Confidence</th>
-                                <th class="px-6 py-4">Status</th>
-                            </tr>
-                        </thead>
-                        <tbody class="divide-y divide-white/5">
-                            <tr class="hover:bg-white/5 transition-colors">
-                                <td class="px-6 py-4 font-mono text-gray-400">08:42:15</td>
-                                <td class="px-6 py-4">Gate 1 (Format)</td>
-                                <td class="px-6 py-4">Repair Date Format</td>
-                                <td class="px-6 py-4 text-green-400">98%</td>
-                                <td class="px-6 py-4 flex items-center"><svg class="w-4 h-4 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span class="text-green-400">Recovered</span></td>
-                            </tr>
-                            <tr class="hover:bg-white/5 transition-colors">
-                                <td class="px-6 py-4 font-mono text-gray-400">08:45:22</td>
-                                <td class="px-6 py-4">Gate 2 (Missing ID)</td>
-                                <td class="px-6 py-4">Lookup CRM Database</td>
-                                <td class="px-6 py-4 text-green-400">92%</td>
-                                <td class="px-6 py-4 flex items-center"><svg class="w-4 h-4 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span class="text-green-400">Recovered</span></td>
-                            </tr>
-                            <tr class="hover:bg-white/5 transition-colors">
-                                <td class="px-6 py-4 font-mono text-gray-400">08:51:10</td>
-                                <td class="px-6 py-4">Gate 3 (Taxonomy)</td>
-                                <td class="px-6 py-4 text-yellow-400">Flagged to Human (Teams Card Sent)</td>
-                                <td class="px-6 py-4 text-red-400">12%</td>
-                                <td class="px-6 py-4 flex items-center"><svg class="w-4 h-4 text-red-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg><span class="text-red-400">Manual Review</span></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 relative z-10">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-            <div>
-                <h3 class="text-3xl font-bold mb-8 text-white">How We Slash Your Bill</h3>
-                <ul class="space-y-6 text-gray-400 font-light">
-                    <li class="flex items-start">
-                        <div class="bg-blue-500/10 p-2 rounded-lg mr-4 border border-blue-500/20">
-                            <svg class="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-                        </div>
-                        <span><strong class="text-white font-medium">Short-Circuit Protocols:</strong> We implement rigid deterministic gates before complex extractions begin. If malformed data is detected, extraction halts instantly.</span>
-                    </li>
-                    <li class="flex items-start">
-                        <div class="bg-blue-500/10 p-2 rounded-lg mr-4 border border-blue-500/20">
-                            <svg class="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
-                        </div>
-                        <span><strong class="text-white font-medium">Zero Cluster Restarts:</strong> By routing corrupted payloads away from PySpark jobs, we eliminate the primary cause of ETL failures and cluster reboots.</span>
-                    </li>
-                    <li class="flex items-start">
-                        <div class="bg-blue-500/10 p-2 rounded-lg mr-4 border border-blue-500/20">
-                            <svg class="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"></path></svg>
-                        </div>
-                        <span><strong class="text-white font-medium">The Ingestion Funnel:</strong> You only pay to process and extract high-fidelity data downstream to your Silver/Gold layers.</span>
-                    </li>
-                </ul>
-            </div>
-            <div class="bg-[#0a0a0a]/80 backdrop-blur-xl p-8 rounded-3xl border border-white/5 relative overflow-hidden">
-                 <div class="absolute top-0 right-0 w-32 h-32 bg-red-500/10 blur-3xl rounded-full"></div>
-                 <h4 class="text-2xl font-semibold mb-6 border-b border-white/10 pb-4 text-white">The ROI Equation</h4>
-                 <div class="space-y-5">
-                     <div class="flex justify-between items-center">
-                         <span class="text-gray-400">Current Monthly Compute Waste:</span>
-                         <span class="text-red-400 font-mono bg-red-500/10 px-3 py-1 rounded-md border border-red-500/20">~30-40%</span>
-                     </div>
-                     <div class="flex justify-between items-center">
-                         <span class="text-gray-400">Engineer Hours Lost Debugging:</span>
-                         <span class="text-red-400 font-mono bg-red-500/10 px-3 py-1 rounded-md border border-red-500/20">15+ hrs/week</span>
-                     </div>
-                     <div class="flex justify-between items-center pt-6 border-t border-white/10">
-                         <span class="text-white font-medium">Expected Optimization:</span>
-                         <span class="text-green-400 font-bold bg-green-500/10 px-4 py-1.5 rounded-full border border-green-500/20">Immediate</span>
-                     </div>
-                 </div>
-            </div>
-        </div>
-    </section>
-
-    <footer class="border-t border-white/10 mt-20 bg-black/50 backdrop-blur-lg z-10 relative">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex flex-col md:flex-row justify-between items-center">
-            <div class="mb-4 md:mb-0"><span class="text-lg font-bold brand-font text-white">FORCE<span class="text-blue-500">MULTIPLIER</span></span></div>
-            <p class="text-gray-500 text-sm font-light">&copy; 2026 Force Multiplier Data. Engineering & AI Automation.</p>
-        </div>
-    </footer>
+    <script>
+        function toggleAudio(videoId) {
+            const video = document.getElementById(videoId);
+            const icon = document.getElementById('audioIcon-' + videoId);
+            if (video.muted) {
+                video.muted = false;
+                icon.innerHTML = `<path d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />`;
+            } else {
+                video.muted = true;
+                icon.innerHTML = `<path d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" /><path d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2" />`;
+            }
+        }
+    </script>
 </body>
 </html>
