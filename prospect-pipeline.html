@@ -51,10 +51,10 @@
     <div class="pointer-events-none fixed inset-0 z-50 h-32 w-full bg-gradient-to-b from-transparent via-brand-emerald/10 to-transparent opacity-50 animate-scanline"></div>
     <div class="fixed inset-0 z-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMTYsIDE4NSwgMTI5LCAwLjE1KSIvPjwvc3ZnPg==')] opacity-20 pointer-events-none"></div>
 
-    <header class="relative pt-24 pb-20 w-full flex flex-col items-center justify-center overflow-hidden border-b border-brand-emerald/20 z-10">
+    <header class="relative pt-20 pb-20 w-full flex flex-col items-center justify-start overflow-hidden border-b border-brand-emerald/20 z-10 min-h-screen">
         
-        <div class="relative z-10 text-center px-4 max-w-5xl mb-12">
-            <div class="inline-flex items-center space-x-2 px-3 py-1 mb-8 rounded-full border border-brand-emerald/30 bg-brand-emerald/10 backdrop-blur-sm">
+        <div class="relative z-10 text-center px-4 max-w-5xl mb-4">
+            <div class="inline-flex items-center space-x-2 px-3 py-1 mb-6 rounded-full border border-brand-emerald/30 bg-brand-emerald/10 backdrop-blur-sm">
                 <span class="w-2 h-2 rounded-full bg-brand-emerald animate-pulse-fast"></span>
                 <span class="text-xs font-mono text-brand-emerald uppercase tracking-widest">System Online // Greater Noida Sector Live</span>
             </div>
@@ -62,45 +62,27 @@
             <h1 class="text-6xl md:text-8xl font-black tracking-tighter uppercase mb-2 drop-shadow-2xl">
                 Intent<span class="text-transparent bg-clip-text bg-gradient-to-br from-brand-emerald to-teal-700">Core</span>
             </h1>
-            <p class="text-xl text-gray-400 font-light tracking-wide">
-                The Next-Generation Autonomous Lead Origination Engine.
+        </div>
+
+        <div class="relative z-10 h-10 mb-12 flex justify-center items-center px-4 text-center">
+            <p class="text-lg md:text-2xl font-mono text-brand-emerald font-bold tracking-widest uppercase">
+                <span id="typewriter"></span><span class="animate-pulse">_</span>
             </p>
         </div>
 
-        <div class="relative z-20 w-full max-w-7xl mx-auto px-6">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-0 border border-brand-emerald/30 rounded-3xl overflow-hidden shadow-[0_0_60px_-15px_rgba(16,185,129,0.3)] bg-[#030605]">
+        <div class="relative z-20 w-full max-w-[90rem] mx-auto px-6">
+            <div class="relative w-full aspect-video md:aspect-[21/9] lg:aspect-[24/9] rounded-3xl overflow-hidden border border-brand-emerald/30 shadow-[0_0_80px_-15px_rgba(16,185,129,0.3)] bg-black group">
+                <video autoplay loop muted playsinline class="w-full h-full object-cover">
+                    <source src="https://res.cloudinary.com/ddritqes2/video/upload/v1775953087/prospect-video_nvc9iy.mp4" type="video/mp4">
+                </video>
                 
-                <div class="relative aspect-video lg:aspect-auto h-full border-b lg:border-b-0 lg:border-r border-brand-emerald/30">
-                    <video autoplay loop muted playsinline class="w-full h-full object-cover opacity-80">
-                        <source src="https://res.cloudinary.com/ddritqes2/video/upload/v1775953087/prospect-video_nvc9iy.mp4" type="video/mp4">
-                    </video>
-                    <div class="absolute inset-0 bg-brand-emerald/5 mix-blend-overlay"></div>
-                    <div class="absolute top-4 right-4 flex space-x-1">
-                        <div class="w-1.5 h-1.5 bg-brand-emerald rounded-full"></div>
-                        <div class="w-1.5 h-1.5 bg-brand-emerald rounded-full opacity-50"></div>
-                        <div class="w-1.5 h-1.5 bg-brand-emerald rounded-full opacity-20"></div>
-                    </div>
-                    <div class="absolute bottom-4 left-4 bg-black/60 backdrop-blur-sm px-3 py-1 rounded border border-white/10 flex items-center space-x-2">
-                        <div class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></div>
-                        <span class="text-[10px] font-mono text-white tracking-widest">LIVE ORIGINATION FEED</span>
-                    </div>
+                <div class="absolute inset-0 bg-gradient-to-b from-brand-dark/30 via-transparent to-brand-dark/50 pointer-events-none"></div>
+                <div class="absolute top-6 left-6 flex space-x-2">
+                    <div class="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
+                    <span class="text-[10px] font-mono text-white tracking-widest bg-black/50 px-2 rounded backdrop-blur-sm border border-white/10">REC // LIVE FEED</span>
                 </div>
-
-                <div class="flex flex-col justify-center p-10 lg:p-16 relative overflow-hidden group">
-                    <div class="absolute top-0 right-0 w-32 h-32 bg-brand-emerald/5 rounded-bl-full pointer-events-none"></div>
-                    
-                    <span class="text-xs font-mono text-gray-500 tracking-widest mb-6 border-b border-white/10 pb-2 inline-block">TERMINAL::STATUS_OUTPUT</span>
-                    
-                    <div class="h-24 flex items-center">
-                        <p id="narrator" class="text-2xl md:text-3xl lg:text-4xl font-mono text-brand-emerald font-bold tracking-tight uppercase border-l-4 border-brand-emerald pl-6 transition-opacity duration-300">
-                            Initializing Agent Pipeline...
-                        </p>
-                    </div>
-
-                    <div class="mt-8 flex items-center space-x-4 opacity-50">
-                        <div class="h-[1px] flex-grow bg-gradient-to-r from-brand-emerald/50 to-transparent"></div>
-                        <span class="text-[10px] font-mono tracking-widest">PROCESSING</span>
-                    </div>
+                <div class="absolute bottom-6 right-6 border border-brand-emerald/50 bg-black/60 backdrop-blur-md px-3 py-1.5 rounded text-[10px] font-mono text-brand-emerald tracking-widest">
+                    AI PIPELINE ACTIVE
                 </div>
             </div>
         </div>
@@ -118,4 +100,149 @@
 
                 <div class="relative z-10 p-8 bg-[#0a100d] border border-white/5 rounded-2xl shadow-[0_0_40px_-15px_rgba(16,185,129,0.15)] hover:border-brand-emerald/50 transition-all duration-500 group">
                     <div class="w-14 h-14 bg-brand-emerald/10 rounded-xl flex items-center justify-center mb-6 border border-brand-emerald/20 group-hover:scale-110 transition-transform">
-                        <svg class="w-6 h-6 text-brand-emerald" fill="none"
+                        <svg class="w-6 h-6 text-brand-emerald" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                    </div>
+                    <div class="text-brand-emerald font-mono text-xs mb-1">STAGE 01</div>
+                    <h3 class="text-2xl font-black mb-3">AGENT M: Signal Scout</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                        24/7 surveillance system scanning NHAI, MCA, and GNIDA registries for statutory disclosure triggers.
+                    </p>
+                    <div class="bg-black/50 rounded-lg p-3 font-mono text-xs text-gray-500">
+                        <span class="text-brand-emerald">▶</span> STATUS: T-48h Freshness Lock
+                    </div>
+                </div>
+
+                <div class="relative z-10 p-8 bg-[#0a100d] border border-white/5 rounded-2xl shadow-[0_0_40px_-15px_rgba(16,185,129,0.15)] hover:border-brand-emerald/50 transition-all duration-500 group mt-0 lg:mt-12">
+                    <div class="w-14 h-14 bg-brand-emerald/10 rounded-xl flex items-center justify-center mb-6 border border-brand-emerald/20 group-hover:scale-110 transition-transform">
+                        <svg class="w-6 h-6 text-brand-emerald" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
+                    </div>
+                    <div class="text-brand-emerald font-mono text-xs mb-1">STAGE 02</div>
+                    <h3 class="text-2xl font-black mb-3">AGENT L: KDM Sniper</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                        Applies SEBI Reg 46 and corporate governance frameworks to decode disclosures and extract CFO/MD direct contacts.
+                    </p>
+                    <div class="bg-black/50 rounded-lg p-3 font-mono text-xs text-gray-500">
+                        <span class="text-brand-emerald">▶</span> STATUS: Identity Resolved
+                    </div>
+                </div>
+
+                <div class="relative z-10 p-8 bg-[#0a100d] border border-brand-emerald/30 rounded-2xl shadow-[0_0_50px_-12px_rgba(16,185,129,0.3)] hover:border-brand-emerald transition-all duration-500 group">
+                    <div class="w-14 h-14 bg-brand-emerald/20 rounded-xl flex items-center justify-center mb-6 border border-brand-emerald/50 group-hover:scale-110 transition-transform">
+                        <svg class="w-6 h-6 text-brand-emerald" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                    </div>
+                    <div class="text-brand-emerald font-mono text-xs mb-1">STAGE 03</div>
+                    <h3 class="text-2xl font-black mb-3">AGENT N: Validator</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                        Quality gatekeeper. Validates 100km proximity radius, 48-hour freshness, and filters for loan eligibility.
+                    </p>
+                    <button class="w-full py-4 bg-brand-emerald hover:bg-white text-black font-black tracking-widest transition-colors rounded-lg flex items-center justify-center space-x-2">
+                        <span>EXECUTE EXPORT</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 px-6 border-t border-white/5 bg-[#030605] z-10 relative">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div>
+                <div class="text-brand-emerald font-mono text-sm mb-4">THE FINANCIAL EDGE</div>
+                <h2 class="text-4xl md:text-5xl font-black uppercase tracking-tight mb-6">The 15% Gap Strategy</h2>
+                <p class="text-gray-400 text-lg leading-relaxed mb-8">
+                    IntentCore doesn't just surface projects—it identifies the mobilization and bank guarantee gap that creates urgent funding requirements.
+                </p>
+                
+                <div class="space-y-6">
+                    <div class="flex items-start space-x-4">
+                        <div class="text-brand-emerald font-black text-xl mt-1">01</div>
+                        <div>
+                            <h4 class="text-white font-bold text-lg">Day 0: L1 Bid Award</h4>
+                            <p class="text-gray-500 text-sm">Company wins tender, must secure Bank Guarantee within 15 days.</p>
+                        </div>
+                    </div>
+                    <div class="w-[1px] h-8 bg-brand-emerald/30 ml-[9px]"></div>
+                    <div class="flex items-start space-x-4">
+                        <div class="text-brand-emerald font-black text-xl mt-1">02</div>
+                        <div>
+                            <h4 class="text-white font-bold text-lg">Day 15: Mobilization Deadline</h4>
+                            <p class="text-gray-500 text-sm">Equipment and workforce deployment required to avoid penalties.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="relative p-8 rounded-3xl border border-white/10 bg-black/50 backdrop-blur-md">
+                <div class="absolute -top-4 -right-4 bg-red-500 text-white text-xs font-black px-3 py-1 rounded-full animate-bounce">
+                    90% DEAD DATA RATE AVOIDED
+                </div>
+                <h3 class="text-xl font-mono text-white mb-6 border-b border-white/10 pb-4">Speed to Market Advantage</h3>
+                
+                <div class="space-y-4 font-mono text-sm">
+                    <div class="flex justify-between items-center">
+                        <span class="text-gray-400">Traditional List Purchase</span>
+                        <span class="text-red-400">Weeks Old</span>
+                    </div>
+                    <div class="w-full bg-white/5 rounded-full h-2"><div class="bg-red-500 h-2 rounded-full" style="width: 90%"></div></div>
+                    
+                    <div class="flex justify-between items-center mt-6">
+                        <span class="text-brand-emerald font-bold">IntentCore Pipeline</span>
+                        <span class="text-brand-emerald">&lt; 48 Hours</span>
+                    </div>
+                    <div class="w-full bg-white/5 rounded-full h-2"><div class="bg-brand-emerald h-2 rounded-full" style="width: 15%"></div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        const textDisplay = document.getElementById('typewriter');
+        const phrases = [
+            "Initiating the agent pipeline...",
+            "Calling Agent M for web scraping...",
+            "Calling Agent L for KDM mapping and contact details...",
+            "Calling Agent N for validating registry links and contacts..."
+        ];
+        
+        let phraseIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+
+        function typeLoop() {
+            const currentPhrase = phrases[phraseIndex];
+            
+            if (isDeleting) {
+                textDisplay.textContent = currentPhrase.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                textDisplay.textContent = currentPhrase.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            let typingSpeed = isDeleting ? 30 : 60;
+
+            // Pause at the end of a phrase before deleting
+            if (!isDeleting && charIndex === currentPhrase.length) {
+                typingSpeed = 2000; 
+                isDeleting = true;
+            } 
+            // Move to next phrase when deleted
+            else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                phraseIndex++;
+                if (phraseIndex >= phrases.length) {
+                    phraseIndex = 0; // Loop back to the beginning
+                }
+                typingSpeed = 500; // Pause before typing next phrase
+            }
+
+            setTimeout(typeLoop, typingSpeed);
+        }
+
+        // Start the loop
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(typeLoop, 1000);
+        });
+    </script>
+</body>
+</html>
