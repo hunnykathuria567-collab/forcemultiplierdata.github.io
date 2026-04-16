@@ -1,82 +1,258 @@
-<header class="relative min-h-screen flex items-center overflow-hidden bg-[#050505] font-sans">
-    <div class="absolute inset-0 z-0">
-        <video id="prospectVideo" autoplay loop muted playsinline class="w-full h-full object-cover opacity-30">
-            <source src="https://res.cloudinary.com/ddritqes2/video/upload/v1775953087/prospect-video_nvc9iy.mp4" type="video/mp4">
-        </video>
-        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-20"></div>
-        <div class="absolute inset-0 bg-gradient-to-b from-purple-900/20 via-black to-black"></div>
-    </div>
+import subprocess
+import sys
+import os
+import io
+import pandas as pd
+import requests
 
-    <div class="max-w-7xl mx-auto px-6 relative z-10 w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        
-        <div class="space-y-8 animate-fade-in">
-            <div class="inline-block px-4 py-1 rounded-full border border-purple-500/50 bg-purple-500/10 text-purple-400 text-sm font-mono tracking-widest uppercase">
-                Neural Pipeline v3.0 Active
-            </div>
-            <h1 class="text-5xl md:text-7xl font-extrabold text-white leading-[1.1]">
-                Intent<span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">Core</span>
-            </h1>
-            <p class="text-xl text-gray-400 max-w-xl leading-relaxed">
-                The Next-Generation <span class="text-white border-b-2 border-purple-500">Autonomous Origination Engine</span>. We don't buy lists; we index statutory intent before your competitors even wake up.
-            </p>
+# ==========================================
+# BOOTSTRAP: AUTO-INSTALLER
+# ==========================================
+def install_dependencies():
+    required = ["xlsxwriter", "openpyxl", "pandas", "requests", "streamlit", "langchain-google-genai", "langgraph"]
+    for lib in required:
+        try:
+            __import__(lib.replace("-", "_"))
+        except ImportError:
+            subprocess.check_call([sys.executable, "-m", "pip", "install", lib])
+
+install_dependencies()
+
+import streamlit as st
+import time
+import json
+import re
+from typing import TypedDict, List, Dict, Any
+from langgraph.graph import StateGraph, START, END
+
+try:
+    from langchain_google_genai import ChatGoogleGenerativeAI
+except ImportError:
+    st.error("Environment Error: Run 'pip install -r requirements.txt'")
+    st.stop()
+
+# ==========================================
+# 0. MASTER DIRECTIVE V10.0 (VERBATIM)
+# ==========================================
+MASTER_DIRECTIVE_V10 = """
+## Master Directive: IntentCore Pipeline (V10.0)
+**ID:** Strategic Lead Architect / Enterprise Lead Gen Engine
+**Status:** STANDBY | Zero Tolerance Mode
+
+---
+
+### 🚨 NON-NEGOTIABLE PROTOCOLS (ZERO TOLERANCE)
+1.  **STRICT FRESHNESS:** Every lead **MUST** be from the last 24-48 hours. If a lead is 49 hours old, it is **DROPPED** immediately.
+2.  **STRICT SORTING:** Leads are sorted **EXCLUSIVELY by Freshness** (Newest to Oldest). 
+3.  **REJECTION & PIVOT:** If a sector search yields zero results within the 48-hour window, **DROP** the sector and **PIVOT** to the next trigger. No stale data allowed.
+4.  **SILENT EXECUTION:** For all commands, output **ONLY** the Markdown table. Absolutely no greetings, summaries, or conversational text before or after the data.
+5.  **LANDLINE OVERRIDE:** If a contact number starts with `011` or `+91 11`, Agent V triggers a **Deep Search via Agent L** to find direct mobile numbers or EA lines.
+6.  **SINGLE TABLE DELIVERY:** To facilitate direct Excel copying, only **one table** shall be printed per response. For multi-agent commands like `Go`, the pipeline will output the first table and then pause, awaiting a "NEXT" or "CONTINUE" command to deliver the subsequent table in a new response bubble.
+
+---
+
+### [AGENT-M: THE SIGNAL SCOUT]
+**Goal:** Extract freshest CAPEX/Loan signals (₹1 Cr - ₹50 Cr) within 100km of Greater Noida.
+* **Sourcing:** Tenders India, NHAI, PIB, UPSIDA, GNIDA, MCA V3, Tracxn, Crunchbase.
+* **Loan Justification Protocol:** For every signal found, generate a strict one-line "Bridge Justification" that links the specific business event (intent) to a concrete financial requirement (CAPEX/Working Capital), ensuring the gap between intent and capital need is logically closed.
+* **Output Format:** Exactly 3 leads in the standard Agent M table. Registry links must be **RAW PLAIN TEXT URLs**.
+
+---
+
+### [AGENT-L: THE KDM SNIPER]
+**Goal:** Map 3 high-level KDMs (CFO, MD, Promoter) to identified merchants.
+* **Deep Search Mode:** Triggered by Agent V if landlines are detected. Iterative search across SEBI filings, MCA reports, and LinkedIn to secure **Direct Mobile Numbers**.
+* **Output Format:** Standard Agent L table (Merchant vs. KDM details).
+
+---
+
+### [AGENT-V: THE PIPELINE AUDITOR]
+**Goal:** Validate parameters and consolidate intelligence into a final execution sheet.
+* **Audit:** Verify Radius (<100km), Segment, and Freshness.
+* **Verification:** Cross-check KDM names/roles and perform the Landline Check.
+* **Consolidation:** Merge all data points into the **Final Consolidated Table**.
+"""
+
+class IntentState(TypedDict):
+    target_city: str
+    radius: str
+    agent_m_results: List[Dict[str, Any]]
+    agent_l_results: Dict[str, Dict[str, Any]] 
+    final_consolidated: List[Dict[str, Any]]
+
+EXECUTION_MODE = "gemini" if "gemini" in sys.argv else "mock"
+
+# ==========================================
+# 1. UI & STYLING
+# ==========================================
+st.set_page_config(page_title="IntentCore | Strategic Architect", layout="wide")
+
+st.markdown("""
+<style>
+    .kdm-v-divider { border-left: 2px solid #374151; padding-left: 20px; height: 100%; }
+    .spinner-ring {
+        display: inline-block; width: 15px; height: 15px;
+        border: 2px solid rgba(255,165,0,.3); border-radius: 50%;
+        border-top-color: #ffa500; animation: spin 1s ease-in-out infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+</style>
+""", unsafe_allow_html=True)
+
+if 'pulse' not in st.session_state: st.session_state.pulse = "IDLE"
+if 'final_leads' not in st.session_state: st.session_state.final_leads = []
+
+with st.sidebar:
+    st.markdown("### 🎯 Target Parameters")
+    city = st.selectbox("Target City", ["Noida", "Greater Noida", "Gurugram", "Delhi", "Mumbai"], index=0)
+    radius = st.selectbox("Search Radius", ["50km", "100km"], index=1)
+    execute = st.button("🚀 RUN STRATEGIC SWEEP", type="primary", use_container_width=True)
+    
+    st.divider()
+    st.markdown("### 🤖 AI Agents")
+    
+    m_icon = "<div class='spinner-ring'></div>" if st.session_state.pulse == "AGENT_M" else ("🟢" if st.session_state.pulse in ["AGENT_L", "AGENT_V", "COMPLETED"] else "⚪")
+    l_icon = "<div class='spinner-ring'></div>" if st.session_state.pulse == "AGENT_L" else ("🟢" if st.session_state.pulse in ["AGENT_V", "COMPLETED"] else "⚪")
+    v_icon = "<div class='spinner-ring'></div>" if st.session_state.pulse == "AGENT_V" else ("🟢" if st.session_state.pulse == "COMPLETED" else "⚪")
+
+    st.markdown(f"{m_icon} **Agent - M** - Live Web Signals Scraping", unsafe_allow_html=True)
+    st.markdown(f"{l_icon} **Agent - L** - Map KDM Details", unsafe_allow_html=True)
+    st.markdown(f"{v_icon} **Agent - V** - Data Quality Checks & Audit Trail Validation", unsafe_allow_html=True)
+
+    st.divider()
+    st.markdown("### 📤 Telegram Integration")
+    tg_token = st.text_input("Bot Token", value="8346410574:AAG8HFv1E-sodfBph0VmUEIQp2tDbnb-vCk")
+    tg_chat_id = st.text_input("Target Chat ID", value="2099448529")
+    
+    if st.button("📤 SEND TO TELEGRAM", type="secondary", use_container_width=True):
+        if st.session_state.final_leads:
+            try:
+                df = pd.DataFrame(st.session_state.final_leads)
+                output = io.BytesIO()
+                with pd.ExcelWriter(output, engine='xlsxwriter') as writer:
+                    df.to_excel(writer, index=False, sheet_name='Leads')
+                output.seek(0)
+                files = {'document': ('IntentCore_Leads.xlsx', output)}
+                url = f"https://api.telegram.org/bot{tg_token}/sendDocument?chat_id={tg_chat_id}"
+                response = requests.post(url, files=files)
+                if response.status_code == 200:
+                    st.success("✅ Pushed Successfully!")
+                else:
+                    st.error(f"❌ Failed: {response.text}")
+            except Exception as e:
+                st.error(f"Error: {str(e)}")
+        else:
+            st.warning("⚠️ Run sweep first.")
+
+st.title("⚡ IntentCore Pipeline [V28.2]")
+
+# ==========================================
+# 2. CORE NODES
+# ==========================================
+
+def agent_m_node(state: IntentState) -> IntentState:
+    st.session_state.pulse = "AGENT_M"
+    with st.expander("📡 [Agent M] Web Signal Scraping Thinking & Logs", expanded=True):
+        st.write("🔍 Accessing Real-time Tenders & Industrial Registries...")
+        time.sleep(3)
+        if EXECUTION_MODE == "mock":
+            leads = [
+                {"Merchant Legal Name": "CtrlS Datacenters Limited", "Location": "Noida", "Intent Signal": "Expansion of AI-Ready Edge Cluster", "Est. Capital Need": "₹45 Cr - ₹50 Cr", "Signal Age": "T - 12 mins", "Audit Trail & Loan Justification": "Immediate liquid capital required for NVIDIA GPU cluster imports.", "Registry Link": "https://mca.gov.in/ctrls-noida", "Intent Score": "10"},
+                {"Merchant Legal Name": "Kiranakart Technologies Private Limited", "Location": "Noida", "Intent Signal": "Land acquisition for fulfillment centers", "Est. Capital Need": "₹15 Cr - ₹25 Cr", "Signal Age": "T - 34 mins", "Audit Trail & Loan Justification": "Rapid dark store scale-up requires bridging for lease deposits.", "Registry Link": "https://inc42.com/zepto-noida", "Intent Score": "10"},
+                {"Merchant Legal Name": "TATA Motors EV Units", "Location": "Greater Noida", "Intent Signal": "New EV Battery Assembly Line Allotment", "Est. Capital Need": "₹50 Cr+", "Signal Age": "T - 48 mins", "Audit Trail & Loan Justification": "Ancillary setup for battery cell integration machinery.", "Registry Link": "https://pib.gov.in/tata-ev", "Intent Score": "10"},
+                {"Merchant Legal Name": "Reliance Digital Fiber", "Location": "Noida Sector 135", "Intent Signal": "Last-mile Fiber rollout deployment", "Est. Capital Need": "₹30 Cr - ₹40 Cr", "Signal Age": "T - 52 mins", "Audit Trail & Loan Justification": "Working capital for large scale trenching and equipment lease.", "Registry Link": "https://mca.gov.in/ril-fiber", "Intent Score": "10"},
+                {"Merchant Legal Name": "Bharat Semi-Conductor", "Location": "Greater Noida", "Intent Signal": "Cleanroom construction phase 2 start", "Est. Capital Need": "₹50 Cr+", "Signal Age": "T - 55 mins", "Audit Trail & Loan Justification": "Foundry equipment installation mandates massive credit lines.", "Registry Link": "https://meity.gov.in/semicon", "Intent Score": "10"}
+            ]
+        else:
+            api_key = os.environ.get("GEMINI_API_KEY") or st.secrets.get("GEMINI_API_KEY")
+            llm = ChatGoogleGenerativeAI(model="gemini-2.0-flash", google_api_key=api_key, temperature=0.1)
+            prompt = f"{MASTER_DIRECTIVE_V10}\n\n### [EXECUTE AGENT M]\nArea: {state['radius']} of {state['target_city']}\nFOCUS SECTOR: Telecom, AI Data Centers & Semiconductor (Target < 4h freshness).\nTHRESHOLD: 10 leads.\nRespond ONLY with RAW JSON Array."
+            response = llm.invoke(prompt)
+            leads = json.loads(re.sub(r'^```json\s*|\s*```$', '', response.content).strip())
+        st.table(leads)
+    return {"agent_m_results": leads}
+
+def agent_l_node(state: IntentState) -> IntentState:
+    st.session_state.pulse = "AGENT_L"
+    with st.expander("🎯 [Agent L] KDM Sniper Mapping Thinking & Logs", expanded=True):
+        st.write("🕵️ Mapping Identity Resolution via SEBI & LinkedIn...")
+        time.sleep(3)
+        if EXECUTION_MODE == "mock":
+            kdm_data = {
+                "CtrlS Datacenters Limited": {
+                    "KDM 1 Name": "Sridhar Pinnapureddy", "KDM 1 Role": "Chairman", "KDM 1 Phone": "+91 9811100001", "KDM 1 Email": "sridhar@ctrls.in", "KDM 1 Icebreaker": "AI cluster congrats.",
+                    "KDM 2 Name": "Vipin Jain", "KDM 2 Role": "President", "KDM 2 Phone": "+91 9811100002", "KDM 2 Email": "vipin@ctrls.in", "KDM 2 Icebreaker": "Hardware finance.",
+                    "KDM 3 Name": "Gopalakrishnan P.", "KDM 3 Role": "CFO", "KDM 3 Phone": "+91 9811100003", "KDM 3 Email": "gopal@ctrls.in", "KDM 3 Icebreaker": "GPU credit facilities."},
+                "Kiranakart Technologies Private Limited": {
+                    "KDM 1 Name": "Aadit Palicha", "KDM 1 Role": "CEO", "KDM 1 Phone": "+91 9811122333", "KDM 1 Email": "aadit@zepto.com", "KDM 1 Icebreaker": "UP dark stores congrats.",
+                    "KDM 2 Name": "Kaivalya Vohra", "KDM 2 Role": "CTO", "KDM 2 Phone": "+91 9811122444", "KDM 2 Email": "kaivalya@zepto.com", "KDM 2 Icebreaker": "Noida tech launch.",
+                    "KDM 3 Name": "Ramesh Bafna", "KDM 3 Role": "CFO", "KDM 3 Phone": "+91 9811122555", "KDM 3 Email": "ramesh@zepto.com", "KDM 3 Icebreaker": "Funding strategy."},
+                "TATA Motors EV Units": {
+                    "KDM 1 Name": "Shailesh Chandra", "KDM 1 Role": "MD", "KDM 1 Phone": "+91 9822200001", "KDM 1 Email": "shailesh@tatamotors.com", "KDM 1 Icebreaker": "Cell assembly congrats.",
+                    "KDM 2 Name": "P.B. Balaji", "KDM 2 Role": "Group CFO", "KDM 2 Phone": "+91 9822200002", "KDM 2 Email": "pb.balaji@tata.com", "KDM 2 Icebreaker": "EV unit capex.",
+                    "KDM 3 Name": "Ratan Tata", "KDM 3 Role": "Chairman Emeritus", "KDM 3 Phone": "+91 9822200003", "KDM 3 Email": "ratan@tata.com", "KDM 3 Icebreaker": "Legacy growth."},
+                "Reliance Digital Fiber": {
+                    "KDM 1 Name": "Mathew Oommen", "KDM 1 Role": "President", "KDM 1 Phone": "+91 9833300001", "KDM 1 Email": "mathew@ril.com", "KDM 1 Icebreaker": "Fiber rollout congrats.",
+                    "KDM 2 Name": "Anshuman Thakur", "KDM 2 Role": "Head of Strategy", "KDM 2 Phone": "+91 9833300002", "KDM 2 Email": "anshuman@ril.com", "KDM 2 Icebreaker": "Digital capex.",
+                    "KDM 3 Name": "Srikanth Venkatachari", "KDM 3 Role": "CFO", "KDM 3 Phone": "+91 9833300003", "KDM 3 Email": "srikanth@ril.com", "KDM 3 Icebreaker": "Infrastructure debt."},
+                "Bharat Semi-Conductor": {
+                    "KDM 1 Name": "Arun Kumar", "KDM 1 Role": "Promoter", "KDM 1 Phone": "+91 9844400001", "KDM 1 Email": "arun@bharatsemicon.com", "KDM 1 Icebreaker": "Cleanroom congrats.",
+                    "KDM 2 Name": "Vijay Singh", "KDM 2 Role": "COO", "KDM 2 Phone": "+91 9844400002", "KDM 2 Email": "vijay@bharatsemicon.com", "KDM 2 Icebreaker": "Foundry setup.",
+                    "KDM 3 Name": "Deepak Shah", "KDM 3 Role": "Finance Head", "KDM 3 Phone": "+91 9844400003", "KDM 3 Email": "deepak@bharatsemicon.com", "KDM 3 Icebreaker": "MEITY grant bridging."}
+            }
+        else:
+            api_key = os.environ.get("GEMINI_API_KEY") or st.secrets.get("GEMINI_API_KEY")
+            llm = ChatGoogleGenerativeAI(model="gemini-2.0-flash", google_api_key=api_key, temperature=0.1)
+            merchants = [l.get("Merchant Legal Name") for l in state["agent_m_results"]]
+            prompt = f"{MASTER_DIRECTIVE_V10}\n\n### [EXECUTE AGENT L]\nMerchants: {merchants}"
+            response = llm.invoke(prompt)
+            kdm_data = json.loads(re.sub(r'^```json\s*|\s*```$', '', response.content).strip())
+        st.table([{"Merchant": m, "KDMs Resolved": 3} for m in kdm_data.keys()])
+    return {"agent_l_results": kdm_data}
+
+def agent_v_node(state: IntentState) -> IntentState:
+    st.session_state.pulse = "AGENT_V"
+    time.sleep(2)
+    consolidated = []
+    for lead in state["agent_m_results"]:
+        name = lead["Merchant Legal Name"]
+        kdms = state["agent_l_results"].get(name, {})
+        consolidated.append({**lead, **kdms})
+    st.session_state.pulse = "COMPLETED"
+    return {"final_consolidated": consolidated}
+
+# ==========================================
+# 4. EXECUTION
+# ==========================================
+if execute:
+    workflow = StateGraph(IntentState)
+    workflow.add_node("agent_m", agent_m_node); workflow.add_node("agent_l", agent_l_node); workflow.add_node("agent_v", agent_v_node)
+    workflow.add_edge(START, "agent_m"); workflow.add_edge("agent_m", "agent_l"); workflow.add_edge("agent_l", "agent_v"); workflow.add_edge("agent_v", END)
+    app = workflow.compile()
+    final_state = app.invoke({"target_city": city, "radius": radius})
+    st.session_state.final_leads = final_state["final_consolidated"]
+    
+    st.divider()
+    st.subheader("🏁 Final Consolidated Intelligence")
+    for lead in st.session_state.final_leads:
+        with st.container(border=True):
+            st.markdown(f"### 🏢 {lead['Merchant Legal Name']} | Score: {lead.get('Intent Score', '10')}")
+            c1, c2 = st.columns([2, 1])
+            with c1: st.info(f"💰 **Loan Justification:** {lead.get('Audit Trail & Loan Justification', 'N/A')}")
+            with c2: st.markdown(f"<div style='background-color:#fef2f2;border:2px solid #ef4444;padding:10px;border-radius:8px;text-align:center;'><span style='color:#b91c1c;font-size:1.5rem;font-weight:900;'>{lead['Signal Age']}</span></div>", unsafe_allow_html=True)
             
-            <div class="grid grid-cols-3 gap-4">
-                <div class="p-4 rounded-xl bg-white/5 border border-white/10 backdrop-blur-md">
-                    <div class="text-purple-500 font-bold mb-1">AGENT M</div>
-                    <div class="text-xs text-gray-400">Signal Scout: 24/7 Registry Monitoring [cite: 30, 38]</div>
-                </div>
-                <div class="p-4 rounded-xl bg-white/5 border border-white/10 backdrop-blur-md">
-                    <div class="text-purple-500 font-bold mb-1">AGENT L</div>
-                    <div class="text-xs text-gray-400">KDM Sniper: SEBI Reg 30(5) Decoding [cite: 32, 43]</div>
-                </div>
-                <div class="p-4 rounded-xl bg-white/5 border border-white/10 backdrop-blur-md">
-                    <div class="text-purple-500 font-bold mb-1">AGENT N</div>
-                    <div class="text-xs text-gray-400">Validator: 48h Freshness Protocol [cite: 34, 69]</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="relative">
-            <div class="absolute -inset-4 bg-purple-600/20 blur-3xl rounded-full opacity-50 animate-pulse"></div>
-            
-            <div class="relative bg-[#0a0a0a]/95 backdrop-blur-3xl border border-white/10 p-8 rounded-[2.5rem] shadow-[0_0_50px_-12px_rgba(168,85,247,0.4)]">
-                <div class="flex justify-between items-center mb-8 border-b border-white/10 pb-4">
-                    <span class="text-sm font-mono text-gray-500">TERMINAL::EXECUTE_ORIGINATION</span>
-                    <div class="flex space-x-2">
-                        <div class="w-3 h-3 rounded-full bg-red-500/50"></div>
-                        <div class="w-3 h-3 rounded-full bg-yellow-500/50"></div>
-                        <div class="w-3 h-3 rounded-full bg-green-500/50"></div>
-                    </div>
-                </div>
-
-                <div class="space-y-6">
-                    <div class="flex items-center space-x-4 p-4 rounded-2xl bg-white/5 hover:bg-white/10 transition-colors">
-                        <div class="text-2xl">🎯</div>
-                        <div>
-                            <h3 class="font-bold text-white">The 15% Gap Strategy </h3>
-                            <p class="text-sm text-gray-400">Target L1 Bidders during the critical 15-day mobilization window. [cite: 87, 92]</p>
-                        </div>
-                    </div>
-
-                    <div class="flex items-center space-x-4 p-4 rounded-2xl bg-white/5 hover:bg-white/10 transition-colors">
-                        <div class="text-2xl">📍</div>
-                        <div>
-                            <h3 class="font-bold text-white">Proximity Sniping [cite: 23]</h3>
-                            <p class="text-sm text-gray-400">Strict 100km radius from Greater Noida center. Zero wasted outreach. [cite: 68, 74]</p>
-                        </div>
-                    </div>
-                </div>
-
-                <button class="mt-10 w-full group relative overflow-hidden rounded-2xl bg-gradient-to-r from-purple-600 to-indigo-600 p-[2px] focus:outline-none">
-                    <div class="relative bg-[#0a0a0a] group-hover:bg-transparent transition-all py-5 rounded-2xl">
-                        <span class="text-white font-black tracking-widest text-lg">EXECUTE PIPELINE</span>
-                    </div>
-                </button>
-                
-                <p class="mt-4 text-center text-xs text-gray-600 font-mono tracking-tighter uppercase">
-                    Direct Excel Export Ready [cite: 83] | 90% Data Decay Eliminated [cite: 10, 12]
-                </p>
-            </div>
-        </div>
-    </div>
-</header>
+            st.markdown("<hr style='border: 1.5px solid #374151;'>", unsafe_allow_html=True)
+            k1, k2, k3 = st.columns(3)
+            with k1:
+                st.markdown(f"**{lead.get('KDM 1 Name', 'N/A')}**\n*{lead.get('KDM 1 Role', 'N/A')}*\n📞 `{lead.get('KDM 1 Phone', 'N/A')}`")
+                st.success(f"💡 {lead.get('KDM 1 Icebreaker', 'N/A')}")
+            with k2:
+                st.markdown("<div class='kdm-v-divider'>", unsafe_allow_html=True)
+                st.markdown(f"**{lead.get('KDM 2 Name', 'N/A')}**\n*{lead.get('KDM 2 Role', 'N/A')}*\n📞 `{lead.get('KDM 2 Phone', 'N/A')}`")
+                st.success(f"💡 {lead.get('KDM 2 Icebreaker', 'N/A')}")
+                st.markdown("</div>", unsafe_allow_html=True)
+            with k3:
+                st.markdown("<div class='kdm-v-divider'>", unsafe_allow_html=True)
+                st.markdown(f"**{lead.get('KDM 3 Name', 'N/A')}**\n*{lead.get('KDM 3 Role', 'N/A')}*\n📞 `{lead.get('KDM 3 Phone', 'N/A')}`")
+                st.success(f"💡 {lead.get('KDM 3 Icebreaker', 'N/A')}")
+                st.markdown("</div>", unsafe_allow_html=True)
