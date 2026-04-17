@@ -35,20 +35,10 @@
         ::-webkit-scrollbar-track { background: #050a08; }
         ::-webkit-scrollbar-thumb { background: #10b981; }
         
-        .handshake-line {
-            background: linear-gradient(90deg, transparent, #10b981, transparent);
-            background-size: 200% 100%;
-            animation: dataFlow 2s linear infinite;
-        }
-        @keyframes dataFlow {
-            0% { background-position: 100% 0; }
-            100% { background-position: -100% 0; }
-        }
-        /* Custom Terminal Cursor */
         .terminal-cursor {
             display: inline-block;
-            width: 12px;
-            height: 24px;
+            width: 10px;
+            height: 20px;
             background-color: #10b981;
             vertical-align: text-bottom;
             animation: blink 1s step-end infinite;
@@ -63,99 +53,194 @@
     <div class="fixed inset-0 z-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMTYsIDE4NSwgMTI5LCAwLjE1KSIvPjwvc3ZnPg==')] opacity-20 pointer-events-none"></div>
 
     <header class="relative pt-16 w-full flex flex-col items-center justify-start overflow-hidden border-b border-brand-emerald/20 z-10">
-        
         <div class="relative z-10 text-center px-4 w-full mb-8 mt-4">
             <div class="inline-flex items-center space-x-2 px-3 py-1 mb-6 rounded-full border border-brand-emerald/30 bg-brand-emerald/10 backdrop-blur-sm">
                 <span class="w-2 h-2 rounded-full bg-brand-emerald animate-pulse-fast"></span>
                 <span class="text-xs font-mono text-brand-emerald uppercase tracking-widest">System Online // Greater Noida Sector Live</span>
             </div>
-            
             <h1 class="text-6xl md:text-8xl font-black tracking-tighter uppercase drop-shadow-2xl">
                 Intent<span class="text-transparent bg-clip-text bg-gradient-to-br from-brand-emerald to-teal-700">Core</span>
             </h1>
         </div>
 
-        <div class="relative z-20 w-full max-w-[120rem] mx-auto aspect-video border-y border-brand-emerald/30 shadow-[0_0_80px_-15px_rgba(16,185,129,0.3)] bg-black group overflow-hidden">
+        <div class="relative z-20 w-full max-w-[120rem] mx-auto aspect-video md:aspect-[21/9] border-y border-brand-emerald/30 shadow-[0_0_80px_-15px_rgba(16,185,129,0.3)] bg-black group overflow-hidden">
             <video autoplay loop muted playsinline class="w-full h-full object-cover">
                 <source src="https://res.cloudinary.com/ddritqes2/video/upload/v1775953087/prospect-video_nvc9iy.mp4" type="video/mp4">
             </video>
-            
             <div class="absolute inset-0 bg-gradient-to-b from-brand-dark/20 via-transparent to-brand-dark/40 pointer-events-none"></div>
             <div class="absolute top-6 left-6 flex space-x-2">
                 <div class="w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
                 <span class="text-xs font-mono text-white tracking-widest bg-black/60 px-3 py-0.5 rounded backdrop-blur-md border border-white/20">REC // LIVE NEURAL FEED</span>
             </div>
         </div>
-
-        <div class="relative z-10 w-full max-w-5xl mx-auto mt-12 mb-20 px-6">
-            <div class="bg-[#020504]/80 border border-brand-emerald/40 rounded-2xl backdrop-blur-xl shadow-[0_0_40px_-10px_rgba(16,185,129,0.2)] p-6 md:p-8 min-h-[220px] flex flex-col justify-start">
-                <div class="flex items-center space-x-2 mb-4 border-b border-brand-emerald/20 pb-2">
-                    <div class="w-3 h-3 rounded-full bg-red-500"></div>
-                    <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
-                    <div class="w-3 h-3 rounded-full bg-brand-emerald"></div>
-                    <span class="text-xs font-mono text-gray-500 ml-4 tracking-widest">root@intentcore:~# execution_log</span>
-                </div>
-                
-                <div class="text-xl md:text-2xl lg:text-3xl font-mono text-brand-emerald font-bold leading-relaxed tracking-wide text-left">
-                    <div id="terminal-output" class="space-y-2"></div>
-                    <span id="cursor" class="terminal-cursor"></span>
-                </div>
-            </div>
-        </div>
     </header>
 
-    <section class="py-32 px-6 relative bg-brand-dark z-10">
+    <section class="pt-24 pb-16 px-6 relative bg-brand-dark z-10">
         <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-24">
-                <h2 class="text-4xl md:text-5xl font-black uppercase tracking-tight">The Triple-Agent <span class="text-brand-emerald">Neural Pipeline</span></h2>
-                <p class="mt-4 text-gray-400 font-mono">Orchestrated Sequence // Zero-Noise Output // Statutory Compliance</p>
-            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
+                
+                <div>
+                    <h2 class="text-4xl md:text-5xl font-black uppercase tracking-tight mb-8 leading-tight">
+                        The Multi-Agent <br><span class="text-brand-emerald">Neural Pipeline</span>
+                    </h2>
+                    
+                    <ul class="space-y-6">
+                        <li class="flex items-center space-x-4">
+                            <div class="w-12 h-12 rounded-xl bg-brand-emerald/10 border border-brand-emerald/30 flex items-center justify-center flex-shrink-0">
+                                <svg class="w-6 h-6 text-brand-emerald" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" /></svg>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold text-lg">Orchestrated Sequence</h4>
+                                <p class="text-sm text-gray-400">Sequential AI logic routing across multiple specialized agents.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-center space-x-4">
+                            <div class="w-12 h-12 rounded-xl bg-brand-emerald/10 border border-brand-emerald/30 flex items-center justify-center flex-shrink-0">
+                                <svg class="w-6 h-6 text-brand-emerald" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" /></svg>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold text-lg">Zero-Noise Output</h4>
+                                <p class="text-sm text-gray-400">Strict gatekeeping ensures 100% verified, actionable leads.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-center space-x-4">
+                            <div class="w-12 h-12 rounded-xl bg-brand-emerald/10 border border-brand-emerald/30 flex items-center justify-center flex-shrink-0">
+                                <svg class="w-6 h-6 text-brand-emerald" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold text-lg">Self Healing</h4>
+                                <p class="text-sm text-gray-400">Autonomous pivoting and deduplication handles edge cases natively.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-center space-x-4">
+                            <div class="w-12 h-12 rounded-xl bg-brand-emerald/10 border border-brand-emerald/30 flex items-center justify-center flex-shrink-0">
+                                <svg class="w-6 h-6 text-brand-emerald" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold text-lg">Statutory Compliance</h4>
+                                <p class="text-sm text-gray-400">Data extraction bound safely to MCA and SEBI public mandates.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 relative">
-                <div class="hidden lg:block absolute top-1/2 left-[10%] w-[80%] h-[2px] handshake-line z-0"></div>
-
-                <div class="relative z-10 p-8 bg-[#0a100d] border border-white/5 rounded-2xl shadow-[0_0_40px_-15px_rgba(16,185,129,0.15)] hover:border-brand-emerald/50 transition-all duration-500 group">
-                    <div class="w-14 h-14 bg-brand-emerald/10 rounded-xl flex items-center justify-center mb-6 border border-brand-emerald/20 group-hover:scale-110 transition-transform">
-                        <svg class="w-6 h-6 text-brand-emerald" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                <div class="w-full">
+                    <div class="bg-[#020504]/90 border border-brand-emerald/40 rounded-2xl backdrop-blur-xl shadow-[0_0_40px_-10px_rgba(16,185,129,0.15)] p-6 h-[320px] flex flex-col justify-start relative overflow-hidden">
+                        <div class="flex items-center space-x-2 mb-4 border-b border-brand-emerald/20 pb-3">
+                            <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                            <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                            <div class="w-3 h-3 rounded-full bg-brand-emerald"></div>
+                            <span class="text-xs font-mono text-gray-500 ml-4 tracking-widest">root@intentcore:~# tail -f pipeline.log</span>
+                        </div>
+                        
+                        <div class="text-sm md:text-base font-mono text-brand-emerald font-semibold leading-loose tracking-wide text-left overflow-hidden">
+                            <div id="terminal-output" class="space-y-1"></div>
+                            <span id="cursor" class="terminal-cursor"></span>
+                        </div>
                     </div>
-                    <div class="text-brand-emerald font-mono text-xs mb-1">STAGE 01</div>
-                    <h3 class="text-2xl font-black mb-3">AGENT M: Signal Scout</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed mb-6">
-                        24/7 surveillance system scanning NHAI, MCA, and GNIDA registries for statutory disclosure triggers.
+                </div>
+
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 relative">
+                
+                <div class="p-6 bg-[#0a100d] border border-white/5 rounded-2xl hover:border-brand-emerald/50 transition-all duration-300 group">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="w-10 h-10 bg-brand-emerald/10 rounded-lg flex items-center justify-center border border-brand-emerald/20 group-hover:scale-110 transition-transform">
+                            <svg class="w-5 h-5 text-brand-emerald" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                        </div>
+                        <div class="text-brand-emerald font-mono text-[10px] uppercase">Stage 01</div>
+                    </div>
+                    <h3 class="text-lg font-black mb-2">AGENT S: Signal Harvester</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed mb-4 min-h-[48px]">
+                        Scrapes high-quality MSME operational execution events (L1 bids, OEM tooling) from public registries.
                     </p>
-                    <div class="bg-black/50 rounded-lg p-3 font-mono text-xs text-gray-500">
+                    <div class="bg-black/50 rounded p-2 font-mono text-[10px] text-gray-500 border border-white/5">
                         <span class="text-brand-emerald">▶</span> STATUS: T-48h Freshness Lock
                     </div>
                 </div>
 
-                <div class="relative z-10 p-8 bg-[#0a100d] border border-white/5 rounded-2xl shadow-[0_0_40px_-15px_rgba(16,185,129,0.15)] hover:border-brand-emerald/50 transition-all duration-500 group mt-0 lg:mt-12">
-                    <div class="w-14 h-14 bg-brand-emerald/10 rounded-xl flex items-center justify-center mb-6 border border-brand-emerald/20 group-hover:scale-110 transition-transform">
-                        <svg class="w-6 h-6 text-brand-emerald" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
+                <div class="p-6 bg-[#0a100d] border border-white/5 rounded-2xl hover:border-brand-emerald/50 transition-all duration-300 group">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="w-10 h-10 bg-brand-emerald/10 rounded-lg flex items-center justify-center border border-brand-emerald/20 group-hover:scale-110 transition-transform">
+                            <svg class="w-5 h-5 text-brand-emerald" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"></path></svg>
+                        </div>
+                        <div class="text-brand-emerald font-mono text-[10px] uppercase">Gate 01</div>
                     </div>
-                    <div class="text-brand-emerald font-mono text-xs mb-1">STAGE 02</div>
-                    <h3 class="text-2xl font-black mb-3">AGENT L: KDM Sniper</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed mb-6">
-                        Applies SEBI Reg 46 and corporate governance frameworks to decode disclosures and extract CFO/MD direct contacts.
+                    <h3 class="text-lg font-black mb-2">AGENT T: Turnover Gate</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed mb-4 min-h-[48px]">
+                        Validates external OSINT (Zauba/MCA) to ensure target entity average annual turnover is ≤ ₹200 Cr.
                     </p>
-                    <div class="bg-black/50 rounded-lg p-3 font-mono text-xs text-gray-500">
+                    <div class="bg-black/50 rounded p-2 font-mono text-[10px] text-gray-500 border border-white/5">
+                        <span class="text-brand-emerald">▶</span> STATUS: Size Verified
+                    </div>
+                </div>
+
+                <div class="p-6 bg-[#0a100d] border border-white/5 rounded-2xl hover:border-brand-emerald/50 transition-all duration-300 group">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="w-10 h-10 bg-brand-emerald/10 rounded-lg flex items-center justify-center border border-brand-emerald/20 group-hover:scale-110 transition-transform">
+                            <svg class="w-5 h-5 text-brand-emerald" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                        </div>
+                        <div class="text-brand-emerald font-mono text-[10px] uppercase">Stage 02</div>
+                    </div>
+                    <h3 class="text-lg font-black mb-2">AGENT M: Market Intel</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed mb-4 min-h-[48px]">
+                        Translates operational events into high-confidence Tier-1 lending intent executing the 15% cash gap strategy.
+                    </p>
+                    <div class="bg-black/50 rounded p-2 font-mono text-[10px] text-gray-500 border border-white/5">
+                        <span class="text-brand-emerald">▶</span> STATUS: Intent Flagged
+                    </div>
+                </div>
+
+                <div class="p-6 bg-[#0a100d] border border-white/5 rounded-2xl hover:border-brand-emerald/50 transition-all duration-300 group">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="w-10 h-10 bg-brand-emerald/10 rounded-lg flex items-center justify-center border border-brand-emerald/20 group-hover:scale-110 transition-transform">
+                            <svg class="w-5 h-5 text-brand-emerald" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
+                        </div>
+                        <div class="text-brand-emerald font-mono text-[10px] uppercase">Stage 03</div>
+                    </div>
+                    <h3 class="text-lg font-black mb-2">AGENT L: KDM Sniper</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed mb-4 min-h-[48px]">
+                        Applies corporate governance frameworks and external OSINT to identify and validate Key Decision Makers.
+                    </p>
+                    <div class="bg-black/50 rounded p-2 font-mono text-[10px] text-gray-500 border border-white/5">
                         <span class="text-brand-emerald">▶</span> STATUS: Identity Resolved
                     </div>
                 </div>
 
-                <div class="relative z-10 p-8 bg-[#0a100d] border border-brand-emerald/30 rounded-2xl shadow-[0_0_50px_-12px_rgba(16,185,129,0.3)] hover:border-brand-emerald transition-all duration-500 group">
-                    <div class="w-14 h-14 bg-brand-emerald/20 rounded-xl flex items-center justify-center mb-6 border border-brand-emerald/50 group-hover:scale-110 transition-transform">
-                        <svg class="w-6 h-6 text-brand-emerald" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                <div class="p-6 bg-[#0a100d] border border-white/5 rounded-2xl hover:border-brand-emerald/50 transition-all duration-300 group">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="w-10 h-10 bg-brand-emerald/10 rounded-lg flex items-center justify-center border border-brand-emerald/20 group-hover:scale-110 transition-transform">
+                            <svg class="w-5 h-5 text-brand-emerald" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+                        </div>
+                        <div class="text-brand-emerald font-mono text-[10px] uppercase">Stage 04</div>
                     </div>
-                    <div class="text-brand-emerald font-mono text-xs mb-1">STAGE 03</div>
-                    <h3 class="text-2xl font-black mb-3">AGENT N: Validator</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed mb-6">
-                        Quality gatekeeper. Validates 100km proximity radius, 48-hour freshness, and filters for loan eligibility.
+                    <h3 class="text-lg font-black mb-2">AGENT E: Enrichment</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed mb-4 min-h-[48px]">
+                        Safely enriches verified KDM profiles (MD/CEO) to extract direct mobile numbers and corporate emails via Apollo.
                     </p>
-                    <button class="w-full py-4 bg-brand-emerald hover:bg-white text-black font-black tracking-widest transition-colors rounded-lg flex items-center justify-center space-x-2">
-                        <span>EXECUTE EXPORT</span>
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
-                    </button>
+                    <div class="bg-black/50 rounded p-2 font-mono text-[10px] text-gray-500 border border-white/5">
+                        <span class="text-brand-emerald">▶</span> STATUS: Contacts Extracted
+                    </div>
                 </div>
+
+                <div class="p-6 bg-[#0a100d] border border-brand-emerald/30 rounded-2xl hover:border-brand-emerald transition-all duration-300 group shadow-[0_0_20px_-5px_rgba(16,185,129,0.2)]">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="w-10 h-10 bg-brand-emerald/20 rounded-lg flex items-center justify-center border border-brand-emerald/40 group-hover:scale-110 transition-transform">
+                            <svg class="w-5 h-5 text-brand-emerald" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                        </div>
+                        <div class="text-brand-emerald font-mono text-[10px] uppercase">Gate 02</div>
+                    </div>
+                    <h3 class="text-lg font-black mb-2">AGENT V: QA Validator</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed mb-4 min-h-[48px]">
+                        Final gatekeeper enforcing strict constraints. Assesses data completeness and loan justification logic.
+                    </p>
+                    <div class="bg-brand-emerald/10 rounded p-2 font-mono text-[10px] text-brand-emerald border border-brand-emerald/20 text-center font-bold">
+                        EXECUTE EXPORT
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
@@ -168,7 +253,6 @@
                 <p class="text-gray-400 text-lg leading-relaxed mb-8">
                     IntentCore doesn't just surface projects—it identifies the mobilization and bank guarantee gap that creates urgent funding requirements.
                 </p>
-                
                 <div class="space-y-6">
                     <div class="flex items-start space-x-4">
                         <div class="text-brand-emerald font-black text-xl mt-1">01</div>
@@ -193,14 +277,12 @@
                     90% DEAD DATA RATE AVOIDED
                 </div>
                 <h3 class="text-xl font-mono text-white mb-6 border-b border-white/10 pb-4">Speed to Market Advantage</h3>
-                
                 <div class="space-y-4 font-mono text-sm">
                     <div class="flex justify-between items-center">
                         <span class="text-gray-400">Traditional List Purchase</span>
                         <span class="text-red-400">Weeks Old</span>
                     </div>
                     <div class="w-full bg-white/5 rounded-full h-2"><div class="bg-red-500 h-2 rounded-full" style="width: 90%"></div></div>
-                    
                     <div class="flex justify-between items-center mt-6">
                         <span class="text-brand-emerald font-bold">IntentCore Pipeline</span>
                         <span class="text-brand-emerald">&lt; 48 Hours</span>
@@ -215,13 +297,14 @@
         const terminal = document.getElementById('terminal-output');
         const cursor = document.getElementById('cursor');
         
-        // Exact steps requested by user
         const logs = [
-            "> Initiating IntentCore Pipeline...",
-            "> Calling Agent M: Executing web scraping...",
-            "> Mapping leads: [Center: Delhi NCR] | [Radius: 100km]...",
-            "> Calling Agent L: Executing KDM mapping & extracting contacts...",
-            "> Calling Agent N: Validating registry links & proximity bounds..."
+            "> Initiating Multi-Agent IntentCore Pipeline...",
+            "> Calling Agent S: Harvesting OSINT triggers...",
+            "> Turnover Gate: Validating < ₹200 Cr cap...",
+            "> Calling Agent M: Extracting Tier-1 Intent...",
+            "> Calling Agent L: Validating KDMs via OSINT...",
+            "> Calling Agent E: Enriching contacts via Apollo...",
+            "> Calling Agent V: Final QA & Export..."
         ];
         
         let logIndex = 0;
@@ -229,11 +312,9 @@
 
         function appendTypeWriter() {
             if (logIndex < logs.length) {
-                // If starting a new line, create a div for it
                 if (charIndex === 0) {
                     const lineDiv = document.createElement('div');
                     lineDiv.id = 'log-' + logIndex;
-                    // Add subtle fade-in animation to the line
                     lineDiv.className = "animate-pulse-fast";
                     terminal.appendChild(lineDiv);
                 }
@@ -241,29 +322,24 @@
                 const currentLine = document.getElementById('log-' + logIndex);
                 
                 if (charIndex < logs[logIndex].length) {
-                    // Type character by character
                     currentLine.textContent += logs[logIndex].charAt(charIndex);
                     charIndex++;
-                    setTimeout(appendTypeWriter, 40); // typing speed
+                    setTimeout(appendTypeWriter, 25); // Faster typing to fit box
                 } else {
-                    // Remove pulse when line is finished
-                    currentLine.className = "text-white/90";
-                    // Line complete, move to next after a delay
+                    currentLine.className = "text-white/80";
                     logIndex++;
                     charIndex = 0;
-                    setTimeout(appendTypeWriter, 1200); // Wait before next command
+                    setTimeout(appendTypeWriter, 800); // Wait before next command
                 }
             } else {
-                // Once finished, wait 6 seconds, clear it, and loop it again
                 setTimeout(() => {
                     terminal.innerHTML = '';
                     logIndex = 0;
                     appendTypeWriter();
-                }, 6000);
+                }, 4000);
             }
         }
 
-        // Start script shortly after load
         document.addEventListener('DOMContentLoaded', () => {
             setTimeout(appendTypeWriter, 1000);
         });
