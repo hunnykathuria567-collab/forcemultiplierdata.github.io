@@ -65,6 +65,18 @@
         .delay-4 { animation-delay: 1.1s; }
         .delay-5 { animation-delay: 1.4s; }
         .delay-6 { animation-delay: 1.7s; }
+
+        /* SVG Text styling */
+        .svg-label {
+            font-family: monospace;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            opacity: 0;
+            transition: opacity 0.8s ease;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.9));
+        }
     </style>
 </head>
 <body class="text-white font-sans antialiased selection:bg-brand-emerald selection:text-black">
@@ -73,7 +85,6 @@
     <div class="fixed inset-0 z-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMTYsIDE4NSwgMTI5LCAwLjE1KSIvPjwvc3ZnPg==')] opacity-20 pointer-events-none"></div>
 
     <header class="relative pt-12 w-full flex flex-col items-center justify-start overflow-hidden border-b border-brand-emerald/20 z-10">
-        
         <div class="relative z-10 flex flex-col md:flex-row items-center justify-center px-4 w-full mb-6 mt-4 md:space-x-8">
             <h1 class="text-6xl md:text-7xl lg:text-8xl font-black tracking-tighter uppercase drop-shadow-2xl leading-none">
                 Intent<span class="text-transparent bg-clip-text bg-gradient-to-br from-brand-emerald to-teal-700">Core</span>
@@ -100,12 +111,10 @@
         <div class="max-w-[120rem] mx-auto">
             
             <div class="grid grid-cols-1 xl:grid-cols-2 gap-16 xl:gap-32 items-stretch mb-32">
-                
                 <div class="flex flex-col justify-center w-full">
                     <h2 class="text-4xl md:text-[3rem] lg:text-[3.5rem] font-black uppercase tracking-tight mb-12 leading-[1.1] drop-shadow-lg">
                         The Multi-Agent <br/><span class="text-brand-emerald">Neural Pipeline</span>
                     </h2>
-                    
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10">
                         <div class="flex items-start space-x-4">
                             <div class="w-12 h-12 mt-1 rounded-xl bg-brand-emerald/10 border border-brand-emerald/30 flex items-center justify-center flex-shrink-0">
@@ -160,7 +169,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
             
             <div class="relative w-full" id="cards-container">
@@ -336,11 +344,11 @@
             }
         }
 
-        // 2. LIVE SVG ARROW ROUTING ENGINE (SMOOTHER & WIDER GAPS)
+        // 2. LIVE SVG ARROW ROUTING ENGINE WITH DATA-FLOW TEXT
         let loopTimeout;
         
         function runArrowSequence() {
-            if(window.innerWidth < 1024) return; // Only draw on desktop/large screens
+            if(window.innerWidth < 1024) return;
 
             const svg = document.getElementById('arrow-canvas');
             svg.innerHTML = ''; 
@@ -360,17 +368,22 @@
                 };
             }
 
-            function drawAnimatedPath(startX, startY, endX, endY, color, dashPattern, delay, isCurve=false, curveOffset=0) {
+            function drawAnimatedPath(startX, startY, endX, endY, color, dashPattern, delay, curveType='none', curveOffset=0, labelText='') {
                 const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
                 
-                let d = isCurve 
-                    ? `M ${startX} ${startY} Q ${startX} ${startY + curveOffset}, ${(startX+endX)/2} ${(startY+endY)/2} T ${endX} ${endY}`
-                    : `M ${startX} ${startY} L ${endX} ${endY}`;
+                let d = '';
+                if (curveType === 'right') {
+                    d = `M ${startX} ${startY} Q ${Math.max(startX, endX) + curveOffset} ${(startY + endY) / 2} ${endX} ${endY}`;
+                } else if (curveType === 'left') {
+                    d = `M ${startX} ${startY} Q ${Math.min(startX, endX) - curveOffset} ${(startY + endY) / 2} ${endX} ${endY}`;
+                } else {
+                    d = `M ${startX} ${startY} L ${endX} ${endY}`;
+                }
 
                 path.setAttribute('d', d);
                 path.setAttribute('stroke', color);
                 path.setAttribute('fill', 'none');
-                path.setAttribute('stroke-width', '4'); // Thicker lines for visibility
+                path.setAttribute('stroke-width', '4'); 
                 
                 const markerId = `arrowhead-${Math.random().toString(36).substr(2,9)}`;
                 const marker = document.createElementNS('http://www.w3.org/2000/svg', 'marker');
@@ -397,11 +410,50 @@
                 path.style.strokeDasharray = length;
                 path.style.strokeDashoffset = length;
                 
-                // Force reflow
-                path.getBoundingClientRect();
+                path.getBoundingClientRect(); // reflow
+
+                // Text Label Data-Flow Logic
+                let textNode = null;
+                if (labelText) {
+                    textNode = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                    textNode.setAttribute('fill', color);
+                    textNode.setAttribute('class', 'svg-label');
+                    
+                    let textX = (startX + endX) / 2;
+                    let textY = (startY + endY) / 2;
+                    const lines = labelText.split('|');
+                    
+                    if (curveType === 'right') {
+                        textX = Math.max(startX, endX) + (curveOffset / 2) + 15;
+                        textNode.setAttribute('text-anchor', 'start');
+                    } else if (curveType === 'left') {
+                        textX = Math.min(startX, endX) - (curveOffset / 2) - 15;
+                        textNode.setAttribute('text-anchor', 'end');
+                    } else {
+                        if (Math.abs(startX - endX) < 50) {
+                            // Vertical Line (M -> L) floats text to the right
+                            textX += 15;
+                            textNode.setAttribute('text-anchor', 'start');
+                        } else {
+                            // Horizontal Line (S->T, L->E, etc.) floats text above
+                            textNode.setAttribute('text-anchor', 'middle');
+                            textY -= 15 + (lines.length - 1) * 6; // Move higher if multi-line
+                        }
+                    }
+
+                    lines.forEach((line, idx) => {
+                        const tspan = document.createElementNS('http://www.w3.org/2000/svg', 'tspan');
+                        tspan.textContent = line.trim();
+                        tspan.setAttribute('x', textX);
+                        tspan.setAttribute('dy', idx === 0 ? '0' : '1.4em');
+                        textNode.appendChild(tspan);
+                    });
+                    
+                    textNode.setAttribute('y', textY);
+                    svg.appendChild(textNode);
+                }
 
                 setTimeout(() => {
-                    // Slower, smoother animation transition (1.5s)
                     path.style.transition = 'stroke-dashoffset 1.5s ease-in-out';
                     path.style.strokeDashoffset = '0';
                     
@@ -409,7 +461,14 @@
                         setTimeout(() => {
                             path.style.transition = 'none';
                             path.setAttribute('stroke-dasharray', dashPattern);
-                        }, 1500); // Wait for line to finish drawing
+                        }, 1500); 
+                    }
+
+                    // Fade in text label immediately after line finishes drawing
+                    if(textNode) {
+                        setTimeout(() => {
+                            textNode.style.opacity = '1';
+                        }, 1200); 
                     }
                 }, delay);
             }
@@ -421,22 +480,22 @@
             const e = getCenter('agent-e');
             const v = getCenter('agent-v');
 
-            // Draw Forward Flow (Green) - Sequential Timing spaced out
-            drawAnimatedPath(s.right, s.y, t.left, t.y, '#10b981', 'none', 500); // S -> T
-            drawAnimatedPath(t.right, t.y, m.left, m.y, '#10b981', 'none', 2000); // T -> M
-            drawAnimatedPath(m.x, m.bottom, l.x, l.top, '#10b981', 'none', 3500); // M -> L (Down)
-            drawAnimatedPath(l.left, l.y, e.right, e.y, '#10b981', 'none', 5000); // L -> E (Left)
-            drawAnimatedPath(e.left, e.y, v.right, v.y, '#10b981', 'none', 6500); // E -> V (Left)
+            // Draw Forward Flow (Green) with Data-Flow Labels
+            drawAnimatedPath(s.right, s.y, t.left, t.y, '#10b981', 'none', 500, 'none', 0, 'All Ticket Size Leads'); 
+            drawAnimatedPath(t.right, t.y, m.left, m.y, '#10b981', 'none', 2000, 'none', 0, 'Leads < Threshold | Ticket Size'); 
+            drawAnimatedPath(m.x, m.bottom, l.x, l.top, '#10b981', 'none', 3500, 'none', 0, 'Leads with | Tier 1 Intent'); 
+            drawAnimatedPath(l.left, l.y, e.right, e.y, '#10b981', 'none', 5000, 'none', 0, 'KDM Name, | LinkedIn Profile'); 
+            drawAnimatedPath(e.left, e.y, v.right, v.y, '#10b981', 'none', 6500, 'none', 0, 'Company, KDM Name, | Contact Number, LinkedIn | Profile, Agent Pitch Statement'); 
 
-            // Draw Loopbacks (Yellow/Red)
-            drawAnimatedPath(l.x + 30, l.top, m.x + 30, m.bottom, '#eab308', '8,8', 8000); // Hold Loop L -> M
-            drawAnimatedPath(v.left, v.y, s.left, s.y, '#ef4444', '8,8', 9500, true, -200); // Reject Loop V -> S
+            // Draw Outer Loopbacks with Text (Yellow/Red)
+            drawAnimatedPath(l.right, l.y, m.right, m.y, '#eab308', '8,8', 8000, 'right', 120, 'Lead Discarded | Next Lead Required');
+            drawAnimatedPath(v.left, v.y, s.left, s.y, '#ef4444', '8,8', 9500, 'left', 120, 'Self Healing & | Intent Validation');
 
             // Halt for 30 Seconds, then clear and repeat
             clearTimeout(loopTimeout);
             loopTimeout = setTimeout(() => {
                 runArrowSequence();
-            }, 30000 + 11000); // 30s pause + 11s animation time
+            }, 30000 + 11000); 
         }
 
         // Initialize
@@ -445,7 +504,6 @@
             setTimeout(runArrowSequence, 2000); 
         });
 
-        // Redraw immediately on resize
         window.addEventListener('resize', () => {
             clearTimeout(window.resizeTimer);
             window.resizeTimer = setTimeout(() => {
