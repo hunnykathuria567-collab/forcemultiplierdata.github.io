@@ -66,16 +66,16 @@
         .delay-5 { animation-delay: 1.4s; }
         .delay-6 { animation-delay: 1.7s; }
 
-        /* SVG Text styling */
+        /* SVG Text styling - BIGGER, BOLDER, WHITE */
         .svg-label {
             font-family: monospace;
-            font-size: 10px;
-            font-weight: 700;
+            font-size: 12px;
+            font-weight: 900;
             text-transform: uppercase;
             letter-spacing: 0.05em;
             opacity: 0;
             transition: opacity 0.8s ease;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.9));
+            filter: drop-shadow(0 3px 5px rgba(0,0,0,1));
         }
     </style>
 </head>
@@ -85,6 +85,7 @@
     <div class="fixed inset-0 z-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMTYsIDE4NSwgMTI5LCAwLjE1KSIvPjwvc3ZnPg==')] opacity-20 pointer-events-none"></div>
 
     <header class="relative pt-12 w-full flex flex-col items-center justify-start overflow-hidden border-b border-brand-emerald/20 z-10">
+        
         <div class="relative z-10 flex flex-col md:flex-row items-center justify-center px-4 w-full mb-6 mt-4 md:space-x-8">
             <h1 class="text-6xl md:text-7xl lg:text-8xl font-black tracking-tighter uppercase drop-shadow-2xl leading-none">
                 Intent<span class="text-transparent bg-clip-text bg-gradient-to-br from-brand-emerald to-teal-700">Core</span>
@@ -344,7 +345,7 @@
             }
         }
 
-        // 2. LIVE SVG ARROW ROUTING ENGINE WITH DATA-FLOW TEXT
+        // 2. LIVE SVG ARROW ROUTING ENGINE WITH DYNAMIC NO-OVERLAP TEXT
         let loopTimeout;
         
         function runArrowSequence() {
@@ -410,13 +411,13 @@
                 path.style.strokeDasharray = length;
                 path.style.strokeDashoffset = length;
                 
-                path.getBoundingClientRect(); // reflow
+                path.getBoundingClientRect(); // force reflow
 
-                // Text Label Data-Flow Logic
+                // Text Label Data-Flow Logic (Dynamically shifting Y axis to avoid overlap)
                 let textNode = null;
                 if (labelText) {
                     textNode = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-                    textNode.setAttribute('fill', color);
+                    textNode.setAttribute('fill', '#ffffff'); // Forced pure white
                     textNode.setAttribute('class', 'svg-label');
                     
                     let textX = (startX + endX) / 2;
@@ -424,20 +425,24 @@
                     const lines = labelText.split('|');
                     
                     if (curveType === 'right') {
-                        textX = Math.max(startX, endX) + (curveOffset / 2) + 15;
+                        textX = Math.max(startX, endX) + (curveOffset / 2) + 20;
                         textNode.setAttribute('text-anchor', 'start');
                     } else if (curveType === 'left') {
-                        textX = Math.min(startX, endX) - (curveOffset / 2) - 15;
+                        textX = Math.min(startX, endX) - (curveOffset / 2) - 20;
                         textNode.setAttribute('text-anchor', 'end');
                     } else {
                         if (Math.abs(startX - endX) < 50) {
-                            // Vertical Line (M -> L) floats text to the right
-                            textX += 15;
+                            // Vertical Line (M -> L)
+                            textX += 20;
                             textNode.setAttribute('text-anchor', 'start');
                         } else {
-                            // Horizontal Line (S->T, L->E, etc.) floats text above
+                            // Horizontal Line
                             textNode.setAttribute('text-anchor', 'middle');
-                            textY -= 15 + (lines.length - 1) * 6; // Move higher if multi-line
+                            // Calculate exact shift based on number of lines and font height
+                            const fontSize = 12;
+                            const lineSpacingEm = 1.3;
+                            const totalHeightPx = (lines.length - 1) * lineSpacingEm * fontSize;
+                            textY -= (15 + totalHeightPx); 
                         }
                     }
 
@@ -445,7 +450,7 @@
                         const tspan = document.createElementNS('http://www.w3.org/2000/svg', 'tspan');
                         tspan.textContent = line.trim();
                         tspan.setAttribute('x', textX);
-                        tspan.setAttribute('dy', idx === 0 ? '0' : '1.4em');
+                        tspan.setAttribute('dy', idx === 0 ? '0' : '1.3em');
                         textNode.appendChild(tspan);
                     });
                     
@@ -464,7 +469,6 @@
                         }, 1500); 
                     }
 
-                    // Fade in text label immediately after line finishes drawing
                     if(textNode) {
                         setTimeout(() => {
                             textNode.style.opacity = '1';
@@ -485,7 +489,7 @@
             drawAnimatedPath(t.right, t.y, m.left, m.y, '#10b981', 'none', 2000, 'none', 0, 'Leads < Threshold | Ticket Size'); 
             drawAnimatedPath(m.x, m.bottom, l.x, l.top, '#10b981', 'none', 3500, 'none', 0, 'Leads with | Tier 1 Intent'); 
             drawAnimatedPath(l.left, l.y, e.right, e.y, '#10b981', 'none', 5000, 'none', 0, 'KDM Name, | LinkedIn Profile'); 
-            drawAnimatedPath(e.left, e.y, v.right, v.y, '#10b981', 'none', 6500, 'none', 0, 'Company, KDM Name, | Contact Number, LinkedIn | Profile, Agent Pitch Statement'); 
+            drawAnimatedPath(e.left, e.y, v.right, v.y, '#10b981', 'none', 6500, 'none', 0, 'Company, KDM Name | Contact No, LinkedIn | Agent Pitch Statement'); 
 
             // Draw Outer Loopbacks with Text (Yellow/Red)
             drawAnimatedPath(l.right, l.y, m.right, m.y, '#eab308', '8,8', 8000, 'right', 120, 'Lead Discarded | Next Lead Required');
