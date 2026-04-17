@@ -67,6 +67,18 @@
         .delay-5 { animation-delay: 1.4s; }
         .delay-6 { animation-delay: 1.7s; }
         .delay-7 { animation-delay: 2.0s; }
+
+        /* SVG Text styling */
+        .svg-label {
+            font-family: monospace;
+            font-size: 12px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            opacity: 0;
+            transition: opacity 0.8s ease;
+            filter: drop-shadow(0 3px 5px rgba(0,0,0,1));
+        }
     </style>
 </head>
 <body class="text-white font-sans antialiased selection:bg-brand-emerald selection:text-black">
@@ -74,27 +86,27 @@
     <div class="pointer-events-none fixed inset-0 z-50 h-32 w-full bg-gradient-to-b from-transparent via-brand-emerald/10 to-transparent opacity-50 animate-scanline"></div>
     <div class="fixed inset-0 z-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMTYsIDE4NSwgMTI5LCAwLjE1KSIvPjwvc3ZnPg==')] opacity-20 pointer-events-none"></div>
 
-    <nav class="fixed top-0 left-0 w-full z-[100] bg-[#020504]/80 backdrop-blur-xl border-b border-brand-emerald/20">
-        <div class="w-[95%] max-w-[160rem] mx-auto px-3 md:px-6 h-20 flex items-center justify-between">
+    <nav class="fixed top-0 left-0 w-full z-[100] bg-[#020504]/90 backdrop-blur-xl border-b border-brand-emerald/20 transition-all">
+        <div class="w-[95%] max-w-[160rem] mx-auto px-3 md:px-6 h-24 flex items-center justify-between">
             
-            <div class="text-2xl md:text-3xl font-black tracking-tighter uppercase drop-shadow-2xl cursor-default">
+            <div class="text-3xl md:text-4xl lg:text-5xl font-black tracking-tighter uppercase drop-shadow-2xl cursor-default">
                 Intent<span class="text-transparent bg-clip-text bg-gradient-to-br from-brand-emerald to-teal-700">Core</span>
             </div>
             
             <div class="hidden lg:flex items-center justify-center space-x-12">
-                <a href="#pipeline-section" class="text-sm font-bold text-gray-300 hover:text-white transition-colors uppercase tracking-widest flex items-center group">
+                <a href="#pipeline-section" class="text-base lg:text-lg font-bold text-gray-300 hover:text-white transition-colors uppercase tracking-widest flex items-center group">
                     <span class="w-1.5 h-1.5 rounded-full bg-brand-emerald mr-2 opacity-0 group-hover:opacity-100 transition-opacity"></span>
                     Architecture
                 </a>
-                <a href="#cards-container" class="text-sm font-bold text-gray-300 hover:text-white transition-colors uppercase tracking-widest flex items-center group">
+                <a href="#cards-container" class="text-base lg:text-lg font-bold text-gray-300 hover:text-white transition-colors uppercase tracking-widest flex items-center group">
                     <span class="w-1.5 h-1.5 rounded-full bg-brand-emerald mr-2 opacity-0 group-hover:opacity-100 transition-opacity"></span>
                     Agents
                 </a>
-                <a href="#strategy-section" class="text-sm font-bold text-gray-300 hover:text-white transition-colors uppercase tracking-widest flex items-center group">
+                <a href="#strategy-section" class="text-base lg:text-lg font-bold text-gray-300 hover:text-white transition-colors uppercase tracking-widest flex items-center group">
                     <span class="w-1.5 h-1.5 rounded-full bg-brand-emerald mr-2 opacity-0 group-hover:opacity-100 transition-opacity"></span>
                     15% Strategy
                 </a>
-                <a href="#agent-delivery" class="text-sm font-bold text-gray-300 hover:text-white transition-colors uppercase tracking-widest flex items-center group">
+                <a href="#agent-delivery" class="text-base lg:text-lg font-bold text-gray-300 hover:text-white transition-colors uppercase tracking-widest flex items-center group">
                     <span class="w-1.5 h-1.5 rounded-full bg-brand-emerald mr-2 opacity-0 group-hover:opacity-100 transition-opacity"></span>
                     Delivery
                 </a>
@@ -102,7 +114,7 @@
 
             <div class="hidden md:inline-flex items-center space-x-3 px-5 py-2 rounded-full border border-brand-emerald/30 bg-brand-emerald/10">
                 <span class="w-2.5 h-2.5 rounded-full bg-brand-emerald animate-pulse-fast"></span>
-                <span class="text-[10px] md:text-xs font-mono text-brand-emerald uppercase tracking-widest">Greater Noida Sector Live</span>
+                <span class="text-xs font-mono text-brand-emerald uppercase tracking-widest">Greater Noida Sector Live</span>
             </div>
             
         </div>
@@ -119,7 +131,7 @@
             </p>
         </div>
 
-        <div class="relative z-20 w-full max-w-[120rem] mx-auto aspect-video border-y border-brand-emerald/30 shadow-[0_0_80px_-15px_rgba(16,185,129,0.3)] bg-black group overflow-hidden">
+        <div class="relative z-20 w-full aspect-video border-y border-brand-emerald/30 shadow-[0_0_80px_-15px_rgba(16,185,129,0.3)] bg-black group overflow-hidden">
             <video autoplay loop muted playsinline class="w-full h-full object-cover">
                 <source src="https://res.cloudinary.com/ddritqes2/video/upload/v1775953087/prospect-video_nvc9iy.mp4" type="video/mp4">
             </video>
@@ -135,11 +147,11 @@
         <div class="w-[95%] max-w-[160rem] mx-auto">
             
             <div class="grid grid-cols-1 xl:grid-cols-2 gap-16 xl:gap-32 items-stretch mb-32">
-                <div class="flex flex-col justify-center w-full">
+                <div class="flex flex-col justify-center w-full text-left">
                     <h2 class="text-4xl md:text-[3rem] lg:text-[3.5rem] font-black uppercase tracking-tight mb-12 leading-[1.1] drop-shadow-lg">
                         The Multi-Agent <br/><span class="text-brand-emerald">Neural Pipeline</span>
                     </h2>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10 w-full">
                         <div class="flex items-start space-x-4">
                             <div class="w-12 h-12 mt-1 rounded-xl bg-brand-emerald/10 border border-brand-emerald/30 flex items-center justify-center flex-shrink-0">
                                 <svg class="w-6 h-6 text-brand-emerald" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" /></svg>
@@ -196,6 +208,8 @@
             </div>
             
             <div class="relative w-full" id="cards-container">
+                <svg id="arrow-canvas" class="absolute inset-0 w-full h-full pointer-events-none z-0" style="overflow: visible;"></svg>
+
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-x-16 xl:gap-x-32 gap-y-24 relative z-10 px-2">
                     
                     <div id="agent-s" class="card-3d delay-1 p-6 bg-[#0a100d] border border-white/10 rounded-2xl w-full max-w-[280px] mx-auto relative group flex flex-col items-center">
@@ -276,7 +290,6 @@
                         </p>
                         
                         <div class="flex flex-col items-center w-full mt-auto bg-[#0a100d] py-6 px-4 rounded-xl border border-white/5">
-                            
                             <div class="flex flex-col items-center group mb-2">
                                 <div class="w-14 h-14 bg-white/5 rounded-full flex items-center justify-center border border-white/10 group-hover:border-green-500 transition-colors">
                                     <svg viewBox="0 0 24 24" class="w-7 h-7 text-green-500" fill="currentColor"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
@@ -361,7 +374,7 @@
     </section>
 
     <script>
-        // TERMINAL LOGIC
+        // 1. TERMINAL LOGIC
         const terminal = document.getElementById('terminal-output');
         
         const logs = [
@@ -406,9 +419,181 @@
             }
         }
 
-        // Initialize
+        // 2. LIVE SVG ARROW ROUTING ENGINE (RESTORED)
+        let loopTimeout;
+        
+        function runArrowSequence() {
+            if(window.innerWidth < 1024) return;
+
+            const svg = document.getElementById('arrow-canvas');
+            svg.innerHTML = ''; 
+            
+            const containerRect = document.getElementById('cards-container').getBoundingClientRect();
+
+            function getCenter(elId) {
+                const el = document.getElementById(elId);
+                const rect = el.getBoundingClientRect();
+                return {
+                    x: rect.left - containerRect.left + rect.width / 2,
+                    y: rect.top - containerRect.top + rect.height / 2,
+                    top: rect.top - containerRect.top,
+                    bottom: rect.top - containerRect.top + rect.height,
+                    left: rect.left - containerRect.left,
+                    right: rect.left - containerRect.left + rect.width
+                };
+            }
+
+            function drawAnimatedPath(startX, startY, endX, endY, color, dashPattern, delay, curveType='none', curveOffset=0, labelText='') {
+                const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                
+                let d = '';
+                if (curveType === 'right') {
+                    d = `M ${startX} ${startY} Q ${Math.max(startX, endX) + curveOffset} ${(startY + endY) / 2} ${endX} ${endY}`;
+                } else if (curveType === 'left') {
+                    d = `M ${startX} ${startY} Q ${Math.min(startX, endX) - curveOffset} ${(startY + endY) / 2} ${endX} ${endY}`;
+                } else if (curveType === 'route-down-right') {
+                    d = `M ${startX} ${startY} L ${startX} ${startY + 40} L ${endX} ${startY + 40} L ${endX} ${endY}`;
+                } else {
+                    d = `M ${startX} ${startY} L ${endX} ${endY}`;
+                }
+
+                path.setAttribute('d', d);
+                path.setAttribute('stroke', color);
+                path.setAttribute('fill', 'none');
+                path.setAttribute('stroke-width', '4'); 
+                
+                const markerId = `arrowhead-${Math.random().toString(36).substr(2,9)}`;
+                const marker = document.createElementNS('http://www.w3.org/2000/svg', 'marker');
+                marker.setAttribute('id', markerId);
+                marker.setAttribute('markerWidth', '10');
+                marker.setAttribute('markerHeight', '10');
+                marker.setAttribute('refX', '8');
+                marker.setAttribute('refY', '3');
+                marker.setAttribute('orient', 'auto');
+                
+                const polygon = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+                polygon.setAttribute('points', '0 0, 10 3, 0 6');
+                polygon.setAttribute('fill', color);
+                marker.appendChild(polygon);
+                
+                let defs = svg.querySelector('defs');
+                if(!defs) { defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs'); svg.appendChild(defs); }
+                defs.appendChild(marker);
+                
+                path.setAttribute('marker-end', `url(#${markerId})`);
+                svg.appendChild(path);
+
+                const length = path.getTotalLength() + 50;
+                path.style.strokeDasharray = length;
+                path.style.strokeDashoffset = length;
+                
+                path.getBoundingClientRect(); 
+
+                // Text Label Data-Flow Logic
+                let textNode = null;
+                if (labelText) {
+                    textNode = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                    textNode.setAttribute('fill', '#ffffff');
+                    textNode.setAttribute('class', 'svg-label');
+                    
+                    let textX = (startX + endX) / 2;
+                    let textY = (startY + endY) / 2;
+                    const lines = labelText.split('|');
+                    
+                    if (curveType === 'right') {
+                        textX = Math.max(startX, endX) + (curveOffset / 2) + 20;
+                        textNode.setAttribute('text-anchor', 'start');
+                    } else if (curveType === 'left') {
+                        textX = Math.min(startX, endX) - (curveOffset / 2) - 20;
+                        textNode.setAttribute('text-anchor', 'end');
+                    } else if (curveType === 'route-down-right') {
+                        textX = (startX + endX) / 2;
+                        textY = startY + 12; 
+                        textNode.setAttribute('text-anchor', 'middle');
+                    } else {
+                        if (Math.abs(startX - endX) < 50) {
+                            textX += 20;
+                            textNode.setAttribute('text-anchor', 'start');
+                        } else {
+                            textNode.setAttribute('text-anchor', 'middle');
+                            const fontSize = 12;
+                            const lineSpacingEm = 1.3;
+                            const totalHeightPx = (lines.length - 1) * lineSpacingEm * fontSize;
+                            textY -= (15 + totalHeightPx); 
+                        }
+                    }
+
+                    lines.forEach((line, idx) => {
+                        const tspan = document.createElementNS('http://www.w3.org/2000/svg', 'tspan');
+                        tspan.textContent = line.trim();
+                        tspan.setAttribute('x', textX);
+                        tspan.setAttribute('dy', idx === 0 ? '0' : '1.3em');
+                        textNode.appendChild(tspan);
+                    });
+                    
+                    textNode.setAttribute('y', textY);
+                    svg.appendChild(textNode);
+                }
+
+                setTimeout(() => {
+                    path.style.transition = 'stroke-dashoffset 1.5s ease-in-out';
+                    path.style.strokeDashoffset = '0';
+                    
+                    if (dashPattern !== 'none') {
+                        setTimeout(() => {
+                            path.style.transition = 'none';
+                            path.setAttribute('stroke-dasharray', dashPattern);
+                        }, 1500); 
+                    }
+
+                    if(textNode) {
+                        setTimeout(() => {
+                            textNode.style.opacity = '1';
+                        }, 1200); 
+                    }
+                }, delay);
+            }
+
+            const s = getCenter('agent-s');
+            const t = getCenter('agent-t');
+            const m = getCenter('agent-m');
+            const l = getCenter('agent-l');
+            const e = getCenter('agent-e');
+            const v = getCenter('agent-v');
+            const delivery = getCenter('agent-delivery');
+
+            // Draw Forward Flow
+            drawAnimatedPath(s.right, s.y, t.left, t.y, '#10b981', 'none', 500, 'none', 0, 'All Ticket Size Leads'); 
+            drawAnimatedPath(t.right, t.y, m.left, m.y, '#10b981', 'none', 2000, 'none', 0, 'Leads < Threshold | Ticket Size'); 
+            drawAnimatedPath(m.x, m.bottom, l.x, l.top, '#10b981', 'none', 3500, 'none', 0, 'Leads with | Tier 1 Intent'); 
+            drawAnimatedPath(l.left, l.y, e.right, e.y, '#10b981', 'none', 5000, 'none', 0, 'KDM Name, | LinkedIn Profile'); 
+            drawAnimatedPath(e.left, e.y, v.right, v.y, '#10b981', 'none', 6500, 'none', 0, 'Company, KDM Name | Contact No, LinkedIn | Agent Pitch Statement'); 
+
+            // Delivery Arrow
+            drawAnimatedPath(v.x, v.bottom, delivery.x, delivery.top, '#10b981', 'none', 8000, 'route-down-right', 0, 'Batch Summary & | Excel Leads Payload');
+
+            // Draw Loopbacks
+            drawAnimatedPath(l.right, l.y, m.right, m.y, '#eab308', '8,8', 9500, 'right', 120, 'Lead Discarded | Next Lead Required');
+            drawAnimatedPath(v.left, v.y, s.left, s.y, '#ef4444', '8,8', 11000, 'left', 120, 'Self Healing & | Intent Validation');
+
+            clearTimeout(loopTimeout);
+            loopTimeout = setTimeout(() => {
+                runArrowSequence();
+            }, 30000 + 12500); 
+        }
+
+        // Initialize Scripts
         document.addEventListener('DOMContentLoaded', () => {
             setTimeout(appendTypeWriter, 1000);
+            setTimeout(runArrowSequence, 2000); 
+        });
+
+        window.addEventListener('resize', () => {
+            clearTimeout(window.resizeTimer);
+            window.resizeTimer = setTimeout(() => {
+                clearTimeout(loopTimeout);
+                runArrowSequence();
+            }, 300);
         });
     </script>
 </body>
