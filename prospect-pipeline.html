@@ -96,17 +96,17 @@
         </div>
     </header>
 
-    <section class="pt-24 pb-32 px-4 md:px-8 lg:px-12 relative bg-brand-dark z-10" id="pipeline-section">
-        <div class="max-w-[100rem] mx-auto">
+    <section class="pt-24 pb-32 px-6 md:px-12 relative bg-brand-dark z-10" id="pipeline-section">
+        <div class="max-w-[120rem] mx-auto">
             
-            <div class="grid grid-cols-1 xl:grid-cols-12 gap-16 xl:gap-24 items-stretch mb-28">
+            <div class="grid grid-cols-1 xl:grid-cols-2 gap-16 xl:gap-32 items-stretch mb-32">
                 
-                <div class="xl:col-span-5 flex flex-col justify-center">
-                    <h2 class="text-4xl md:text-[2.7rem] lg:text-[3rem] font-black uppercase tracking-tight mb-10 leading-none whitespace-nowrap drop-shadow-lg">
-                        The Multi-Agent <span class="text-brand-emerald">Neural Pipeline</span>
+                <div class="flex flex-col justify-center w-full">
+                    <h2 class="text-4xl md:text-[3rem] lg:text-[3.5rem] font-black uppercase tracking-tight mb-12 leading-[1.1] drop-shadow-lg">
+                        The Multi-Agent <br/><span class="text-brand-emerald">Neural Pipeline</span>
                     </h2>
                     
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-10">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10">
                         <div class="flex items-start space-x-4">
                             <div class="w-12 h-12 mt-1 rounded-xl bg-brand-emerald/10 border border-brand-emerald/30 flex items-center justify-center flex-shrink-0">
                                 <svg class="w-6 h-6 text-brand-emerald" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" /></svg>
@@ -146,7 +146,7 @@
                     </div>
                 </div>
 
-                <div class="xl:col-span-7 h-full w-full">
+                <div class="h-full w-full">
                     <div class="bg-[#020504]/90 border border-brand-emerald/40 rounded-2xl backdrop-blur-xl shadow-[0_0_50px_-10px_rgba(16,185,129,0.15)] p-8 h-full min-h-[420px] flex flex-col justify-start relative overflow-hidden w-full">
                         <div class="flex items-center space-x-2 mb-6 border-b border-brand-emerald/20 pb-4">
                             <div class="w-3.5 h-3.5 rounded-full bg-red-500"></div>
@@ -154,7 +154,7 @@
                             <div class="w-3.5 h-3.5 rounded-full bg-brand-emerald"></div>
                             <span class="text-sm font-mono text-gray-500 ml-4 tracking-widest">root@intentcore:~# tail -f pipeline.log</span>
                         </div>
-                        <div class="text-[15px] md:text-[17px] font-mono text-brand-emerald font-semibold leading-[1.8] tracking-wide text-left overflow-hidden">
+                        <div class="text-[15px] md:text-[17px] font-mono text-brand-emerald font-semibold leading-[2] tracking-wide text-left overflow-hidden">
                             <div id="terminal-output" class="space-y-2"></div>
                             <span id="cursor" class="terminal-cursor"></span>
                         </div>
@@ -166,77 +166,125 @@
             <div class="relative w-full" id="cards-container">
                 <svg id="arrow-canvas" class="absolute inset-0 w-full h-full pointer-events-none z-0" style="overflow: visible;"></svg>
 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-x-12 gap-y-20 relative z-10 px-2">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-x-16 xl:gap-x-32 gap-y-24 relative z-10 px-2">
                     
-                    <div id="agent-s" class="card-3d delay-1 p-8 bg-[#0a100d] border border-white/10 rounded-2xl w-full mx-auto relative group flex flex-col items-center">
-                        <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center border-2 border-brand-emerald shadow-[0_0_20px_rgba(16,185,129,0.4)] mb-6 z-10 relative">
-                            <svg class="w-8 h-8 text-[#0a100d]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                    <div id="agent-s" class="card-3d delay-1 p-6 bg-[#0a100d] border border-white/10 rounded-2xl w-full max-w-[280px] mx-auto relative group flex flex-col items-center">
+                        <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center border-2 border-brand-emerald shadow-[0_0_20px_rgba(16,185,129,0.4)] mb-5 z-10 relative">
+                            <svg class="w-7 h-7 text-[#0a100d]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                         </div>
-                        <h3 class="text-xl font-black text-white text-center mb-4 tracking-widest uppercase w-full">AGENT S <span class="text-brand-emerald mx-1">-</span> SIGNAL HARVESTER</h3>
-                        <p class="text-white font-bold text-base leading-relaxed text-center mb-8 flex-grow">Scrapes high-quality MSME execution events (L1 bids) from registries.</p>
-                        <div class="w-full flex justify-between items-center px-4 py-2 bg-black/50 border border-white/5 rounded-lg mt-auto">
-                            <span class="text-brand-emerald font-mono text-[11px] uppercase font-bold">Stage 01</span>
-                            <span class="font-mono text-[11px] text-gray-400 tracking-wider">STATUS: T-48h Lock</span>
-                        </div>
-                    </div>
-
-                    <div id="agent-t" class="card-3d delay-2 p-8 bg-[#0a100d] border border-white/10 rounded-2xl w-full mx-auto relative group flex flex-col items-center">
-                        <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center border-2 border-brand-emerald shadow-[0_0_20px_rgba(16,185,129,0.4)] mb-6 z-10 relative">
-                            <svg class="w-8 h-8 text-[#0a100d]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"></path></svg>
-                        </div>
-                        <h3 class="text-xl font-black text-white text-center mb-4 tracking-widest uppercase w-full">AGENT T <span class="text-brand-emerald mx-1">-</span> TURNOVER GATE</h3>
-                        <p class="text-white font-bold text-base leading-relaxed text-center mb-8 flex-grow">Validates external OSINT (Zauba/MCA) to ensure turnover ≤ ₹200 Cr.</p>
-                        <div class="w-full flex justify-between items-center px-4 py-2 bg-black/50 border border-white/5 rounded-lg mt-auto">
-                            <span class="text-brand-emerald font-mono text-[11px] uppercase font-bold">Gate 01</span>
-                            <span class="font-mono text-[11px] text-gray-400 tracking-wider">STATUS: Size Verified</span>
+                        <h3 class="text-lg font-black text-white text-center mb-3 tracking-widest uppercase w-full">AGENT S <span class="text-brand-emerald mx-1">-</span> SIGNAL HARVESTER</h3>
+                        <p class="text-white font-bold text-sm leading-relaxed text-center mb-6 flex-grow">Scrapes high-quality MSME execution events (L1 bids) from registries.</p>
+                        <div class="w-full flex justify-between items-center px-3 py-2 bg-black/50 border border-white/5 rounded-lg mt-auto">
+                            <span class="text-brand-emerald font-mono text-[10px] uppercase font-bold">Stage 01</span>
+                            <span class="font-mono text-[10px] text-gray-400 tracking-wider">T-48h Lock</span>
                         </div>
                     </div>
 
-                    <div id="agent-m" class="card-3d delay-3 p-8 bg-[#0a100d] border border-white/10 rounded-2xl w-full mx-auto relative group flex flex-col items-center">
-                        <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center border-2 border-brand-emerald shadow-[0_0_20px_rgba(16,185,129,0.4)] mb-6 z-10 relative">
-                            <svg class="w-8 h-8 text-[#0a100d]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                    <div id="agent-t" class="card-3d delay-2 p-6 bg-[#0a100d] border border-white/10 rounded-2xl w-full max-w-[280px] mx-auto relative group flex flex-col items-center">
+                        <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center border-2 border-brand-emerald shadow-[0_0_20px_rgba(16,185,129,0.4)] mb-5 z-10 relative">
+                            <svg class="w-7 h-7 text-[#0a100d]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"></path></svg>
                         </div>
-                        <h3 class="text-xl font-black text-white text-center mb-4 tracking-widest uppercase w-full">AGENT M <span class="text-brand-emerald mx-1">-</span> MARKET INTEL</h3>
-                        <p class="text-white font-bold text-base leading-relaxed text-center mb-8 flex-grow">Translates events into Tier-1 lending intent via 15% cash gap logic.</p>
-                        <div class="w-full flex justify-between items-center px-4 py-2 bg-black/50 border border-white/5 rounded-lg mt-auto">
-                            <span class="text-brand-emerald font-mono text-[11px] uppercase font-bold">Stage 02</span>
-                            <span class="font-mono text-[11px] text-gray-400 tracking-wider">STATUS: Intent Flagged</span>
-                        </div>
-                    </div>
-
-                    <div id="agent-v" class="card-3d delay-6 p-8 bg-[#0a100d] border-2 border-brand-emerald/80 rounded-2xl w-full mx-auto relative group shadow-[0_0_40px_-5px_rgba(16,185,129,0.4)] flex flex-col items-center">
-                        <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center border-2 border-brand-emerald shadow-[0_0_20px_rgba(16,185,129,0.4)] mb-6 z-10 relative">
-                            <svg class="w-8 h-8 text-[#0a100d]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
-                        </div>
-                        <h3 class="text-xl font-black text-white text-center mb-4 tracking-widest uppercase w-full">AGENT V <span class="text-brand-emerald mx-1">-</span> QA VALIDATOR</h3>
-                        <p class="text-white font-bold text-base leading-relaxed text-center mb-8 flex-grow">Final gatekeeper. Assesses completeness and loan justification logic.</p>
-                        <div class="w-full bg-brand-emerald hover:bg-white text-black text-center font-black tracking-widest rounded-lg py-3 text-sm cursor-pointer transition-colors mt-auto">EXECUTE EXPORT</div>
-                    </div>
-
-                    <div id="agent-e" class="card-3d delay-5 p-8 bg-[#0a100d] border border-white/10 rounded-2xl w-full mx-auto relative group flex flex-col items-center">
-                        <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center border-2 border-brand-emerald shadow-[0_0_20px_rgba(16,185,129,0.4)] mb-6 z-10 relative">
-                            <svg class="w-8 h-8 text-[#0a100d]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
-                        </div>
-                        <h3 class="text-xl font-black text-white text-center mb-4 tracking-widest uppercase w-full">AGENT E <span class="text-brand-emerald mx-1">-</span> ENRICHMENT</h3>
-                        <p class="text-white font-bold text-base leading-relaxed text-center mb-8 flex-grow">Enriches verified KDM profiles (MD/CEO) to extract direct mobile numbers.</p>
-                        <div class="w-full flex justify-between items-center px-4 py-2 bg-black/50 border border-white/5 rounded-lg mt-auto">
-                            <span class="text-brand-emerald font-mono text-[11px] uppercase font-bold">Stage 04</span>
-                            <span class="font-mono text-[11px] text-gray-400 tracking-wider">STATUS: Contacts Extracted</span>
+                        <h3 class="text-lg font-black text-white text-center mb-3 tracking-widest uppercase w-full">AGENT T <span class="text-brand-emerald mx-1">-</span> TURNOVER GATE</h3>
+                        <p class="text-white font-bold text-sm leading-relaxed text-center mb-6 flex-grow">Validates external OSINT (Zauba/MCA) to ensure turnover ≤ ₹200 Cr.</p>
+                        <div class="w-full flex justify-between items-center px-3 py-2 bg-black/50 border border-white/5 rounded-lg mt-auto">
+                            <span class="text-brand-emerald font-mono text-[10px] uppercase font-bold">Gate 01</span>
+                            <span class="font-mono text-[10px] text-gray-400 tracking-wider">Size Verified</span>
                         </div>
                     </div>
 
-                    <div id="agent-l" class="card-3d delay-4 p-8 bg-[#0a100d] border border-white/10 rounded-2xl w-full mx-auto relative group flex flex-col items-center">
-                        <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center border-2 border-brand-emerald shadow-[0_0_20px_rgba(16,185,129,0.4)] mb-6 z-10 relative">
-                            <svg class="w-8 h-8 text-[#0a100d]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
+                    <div id="agent-m" class="card-3d delay-3 p-6 bg-[#0a100d] border border-white/10 rounded-2xl w-full max-w-[280px] mx-auto relative group flex flex-col items-center">
+                        <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center border-2 border-brand-emerald shadow-[0_0_20px_rgba(16,185,129,0.4)] mb-5 z-10 relative">
+                            <svg class="w-7 h-7 text-[#0a100d]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
                         </div>
-                        <h3 class="text-xl font-black text-white text-center mb-4 tracking-widest uppercase w-full">AGENT L <span class="text-brand-emerald mx-1">-</span> KDM SNIPER</h3>
-                        <p class="text-white font-bold text-base leading-relaxed text-center mb-8 flex-grow">Applies governance frameworks to decode OSINT and validate Decision Makers.</p>
-                        <div class="w-full flex justify-between items-center px-4 py-2 bg-black/50 border border-white/5 rounded-lg mt-auto">
-                            <span class="text-brand-emerald font-mono text-[11px] uppercase font-bold">Stage 03</span>
-                            <span class="font-mono text-[11px] text-gray-400 tracking-wider">STATUS: Identity Resolved</span>
+                        <h3 class="text-lg font-black text-white text-center mb-3 tracking-widest uppercase w-full">AGENT M <span class="text-brand-emerald mx-1">-</span> MARKET INTEL</h3>
+                        <p class="text-white font-bold text-sm leading-relaxed text-center mb-6 flex-grow">Translates events into Tier-1 lending intent via 15% cash gap logic.</p>
+                        <div class="w-full flex justify-between items-center px-3 py-2 bg-black/50 border border-white/5 rounded-lg mt-auto">
+                            <span class="text-brand-emerald font-mono text-[10px] uppercase font-bold">Stage 02</span>
+                            <span class="font-mono text-[10px] text-gray-400 tracking-wider">Intent Flagged</span>
                         </div>
                     </div>
 
+                    <div id="agent-v" class="card-3d delay-6 p-6 bg-[#0a100d] border-2 border-brand-emerald/80 rounded-2xl w-full max-w-[280px] mx-auto relative group shadow-[0_0_40px_-5px_rgba(16,185,129,0.4)] flex flex-col items-center">
+                        <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center border-2 border-brand-emerald shadow-[0_0_20px_rgba(16,185,129,0.4)] mb-5 z-10 relative">
+                            <svg class="w-7 h-7 text-[#0a100d]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                        </div>
+                        <h3 class="text-lg font-black text-white text-center mb-3 tracking-widest uppercase w-full">AGENT V <span class="text-brand-emerald mx-1">-</span> QA VALIDATOR</h3>
+                        <p class="text-white font-bold text-sm leading-relaxed text-center mb-6 flex-grow">Final gatekeeper. Assesses completeness and loan justification logic.</p>
+                        <div class="w-full bg-brand-emerald hover:bg-white text-black text-center font-black tracking-widest rounded-lg py-2.5 text-[11px] cursor-pointer transition-colors mt-auto">EXECUTE EXPORT</div>
+                    </div>
+
+                    <div id="agent-e" class="card-3d delay-5 p-6 bg-[#0a100d] border border-white/10 rounded-2xl w-full max-w-[280px] mx-auto relative group flex flex-col items-center">
+                        <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center border-2 border-brand-emerald shadow-[0_0_20px_rgba(16,185,129,0.4)] mb-5 z-10 relative">
+                            <svg class="w-7 h-7 text-[#0a100d]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+                        </div>
+                        <h3 class="text-lg font-black text-white text-center mb-3 tracking-widest uppercase w-full">AGENT E <span class="text-brand-emerald mx-1">-</span> ENRICHMENT</h3>
+                        <p class="text-white font-bold text-sm leading-relaxed text-center mb-6 flex-grow">Enriches verified KDM profiles (MD/CEO) to extract direct mobile numbers.</p>
+                        <div class="w-full flex justify-between items-center px-3 py-2 bg-black/50 border border-white/5 rounded-lg mt-auto">
+                            <span class="text-brand-emerald font-mono text-[10px] uppercase font-bold">Stage 04</span>
+                            <span class="font-mono text-[10px] text-gray-400 tracking-wider">Contacts Extracted</span>
+                        </div>
+                    </div>
+
+                    <div id="agent-l" class="card-3d delay-4 p-6 bg-[#0a100d] border border-white/10 rounded-2xl w-full max-w-[280px] mx-auto relative group flex flex-col items-center">
+                        <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center border-2 border-brand-emerald shadow-[0_0_20px_rgba(16,185,129,0.4)] mb-5 z-10 relative">
+                            <svg class="w-7 h-7 text-[#0a100d]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
+                        </div>
+                        <h3 class="text-lg font-black text-white text-center mb-3 tracking-widest uppercase w-full">AGENT L <span class="text-brand-emerald mx-1">-</span> KDM SNIPER</h3>
+                        <p class="text-white font-bold text-sm leading-relaxed text-center mb-6 flex-grow">Applies governance frameworks to decode OSINT and validate Decision Makers.</p>
+                        <div class="w-full flex justify-between items-center px-3 py-2 bg-black/50 border border-white/5 rounded-lg mt-auto">
+                            <span class="text-brand-emerald font-mono text-[10px] uppercase font-bold">Stage 03</span>
+                            <span class="font-mono text-[10px] text-gray-400 tracking-wider">Identity Resolved</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 px-6 border-t border-white/5 bg-[#030605] z-10 relative">
+        <div class="max-w-[120rem] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div>
+                <div class="text-brand-emerald font-mono text-sm mb-4">THE FINANCIAL EDGE</div>
+                <h2 class="text-4xl md:text-5xl font-black uppercase tracking-tight mb-6">The 15% Gap Strategy</h2>
+                <p class="text-gray-400 text-lg leading-relaxed mb-8">
+                    IntentCore doesn't just surface projects—it identifies the mobilization and bank guarantee gap that creates urgent funding requirements.
+                </p>
+                <div class="space-y-6">
+                    <div class="flex items-start space-x-4">
+                        <div class="text-brand-emerald font-black text-xl mt-1">01</div>
+                        <div>
+                            <h4 class="text-white font-bold text-lg">Day 0: L1 Bid Award</h4>
+                            <p class="text-gray-500 text-sm">Company wins tender, must secure Bank Guarantee within 15 days.</p>
+                        </div>
+                    </div>
+                    <div class="w-[1px] h-8 bg-brand-emerald/30 ml-[9px]"></div>
+                    <div class="flex items-start space-x-4">
+                        <div class="text-brand-emerald font-black text-xl mt-1">02</div>
+                        <div>
+                            <h4 class="text-white font-bold text-lg">Day 15: Mobilization Deadline</h4>
+                            <p class="text-gray-500 text-sm">Equipment and workforce deployment required to avoid penalties.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="relative p-8 rounded-3xl border border-white/10 bg-black/50 backdrop-blur-md">
+                <div class="absolute -top-4 -right-4 bg-red-500 text-white text-xs font-black px-3 py-1 rounded-full animate-bounce">
+                    90% DEAD DATA RATE AVOIDED
+                </div>
+                <h3 class="text-xl font-mono text-white mb-6 border-b border-white/10 pb-4">Speed to Market Advantage</h3>
+                <div class="space-y-4 font-mono text-sm">
+                    <div class="flex justify-between items-center">
+                        <span class="text-gray-400">Traditional List Purchase</span>
+                        <span class="text-red-400">Weeks Old</span>
+                    </div>
+                    <div class="w-full bg-white/5 rounded-full h-2"><div class="bg-red-500 h-2 rounded-full" style="width: 90%"></div></div>
+                    <div class="flex justify-between items-center mt-6">
+                        <span class="text-brand-emerald font-bold">IntentCore Pipeline</span>
+                        <span class="text-brand-emerald">&lt; 48 Hours</span>
+                    </div>
+                    <div class="w-full bg-white/5 rounded-full h-2"><div class="bg-brand-emerald h-2 rounded-full" style="width: 15%"></div></div>
                 </div>
             </div>
         </div>
@@ -288,14 +336,14 @@
             }
         }
 
-        // 2. LIVE SVG ARROW ROUTING ENGINE (INFINITE LOOP)
+        // 2. LIVE SVG ARROW ROUTING ENGINE (SMOOTHER & WIDER GAPS)
         let loopTimeout;
         
         function runArrowSequence() {
-            if(window.innerWidth < 768) return; // Only draw on desktop
+            if(window.innerWidth < 1024) return; // Only draw on desktop/large screens
 
             const svg = document.getElementById('arrow-canvas');
-            svg.innerHTML = ''; // Clear previous arrows
+            svg.innerHTML = ''; 
             
             const containerRect = document.getElementById('cards-container').getBoundingClientRect();
 
@@ -322,7 +370,7 @@
                 path.setAttribute('d', d);
                 path.setAttribute('stroke', color);
                 path.setAttribute('fill', 'none');
-                path.setAttribute('stroke-width', '3');
+                path.setAttribute('stroke-width', '4'); // Thicker lines for visibility
                 
                 const markerId = `arrowhead-${Math.random().toString(36).substr(2,9)}`;
                 const marker = document.createElementNS('http://www.w3.org/2000/svg', 'marker');
@@ -353,19 +401,19 @@
                 path.getBoundingClientRect();
 
                 setTimeout(() => {
-                    path.style.transition = 'stroke-dashoffset 1s ease-in-out';
+                    // Slower, smoother animation transition (1.5s)
+                    path.style.transition = 'stroke-dashoffset 1.5s ease-in-out';
                     path.style.strokeDashoffset = '0';
                     
                     if (dashPattern !== 'none') {
                         setTimeout(() => {
                             path.style.transition = 'none';
                             path.setAttribute('stroke-dasharray', dashPattern);
-                        }, 1000);
+                        }, 1500); // Wait for line to finish drawing
                     }
                 }, delay);
             }
 
-            // Get Card Coordinates
             const s = getCenter('agent-s');
             const t = getCenter('agent-t');
             const m = getCenter('agent-m');
@@ -373,31 +421,31 @@
             const e = getCenter('agent-e');
             const v = getCenter('agent-v');
 
-            // Draw Forward Flow (Green) - Sequential Timing
+            // Draw Forward Flow (Green) - Sequential Timing spaced out
             drawAnimatedPath(s.right, s.y, t.left, t.y, '#10b981', 'none', 500); // S -> T
-            drawAnimatedPath(t.right, t.y, m.left, m.y, '#10b981', 'none', 1500); // T -> M
-            drawAnimatedPath(m.x, m.bottom, l.x, l.top, '#10b981', 'none', 2500); // M -> L (Down)
-            drawAnimatedPath(l.left, l.y, e.right, e.y, '#10b981', 'none', 3500); // L -> E (Left)
-            drawAnimatedPath(e.left, e.y, v.right, v.y, '#10b981', 'none', 4500); // E -> V (Left)
+            drawAnimatedPath(t.right, t.y, m.left, m.y, '#10b981', 'none', 2000); // T -> M
+            drawAnimatedPath(m.x, m.bottom, l.x, l.top, '#10b981', 'none', 3500); // M -> L (Down)
+            drawAnimatedPath(l.left, l.y, e.right, e.y, '#10b981', 'none', 5000); // L -> E (Left)
+            drawAnimatedPath(e.left, e.y, v.right, v.y, '#10b981', 'none', 6500); // E -> V (Left)
 
             // Draw Loopbacks (Yellow/Red)
-            drawAnimatedPath(l.x + 40, l.top, m.x + 40, m.bottom, '#eab308', '8,8', 5500); // Hold Loop L -> M
-            drawAnimatedPath(v.left, v.y, s.left, s.y, '#ef4444', '8,8', 6500, true, -200); // Reject Loop V -> S
+            drawAnimatedPath(l.x + 30, l.top, m.x + 30, m.bottom, '#eab308', '8,8', 8000); // Hold Loop L -> M
+            drawAnimatedPath(v.left, v.y, s.left, s.y, '#ef4444', '8,8', 9500, true, -200); // Reject Loop V -> S
 
             // Halt for 30 Seconds, then clear and repeat
             clearTimeout(loopTimeout);
             loopTimeout = setTimeout(() => {
                 runArrowSequence();
-            }, 30000 + 7500); // 30s pause + 7.5s animation time
+            }, 30000 + 11000); // 30s pause + 11s animation time
         }
 
         // Initialize
         document.addEventListener('DOMContentLoaded', () => {
             setTimeout(appendTypeWriter, 1000);
-            setTimeout(runArrowSequence, 2000); // Wait for cards to pop in before starting arrows
+            setTimeout(runArrowSequence, 2000); 
         });
 
-        // Redraw immediately on resize to keep arrows accurate
+        // Redraw immediately on resize
         window.addEventListener('resize', () => {
             clearTimeout(window.resizeTimer);
             window.resizeTimer = setTimeout(() => {
