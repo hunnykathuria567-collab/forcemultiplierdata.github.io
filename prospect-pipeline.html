@@ -36,6 +36,11 @@
         ::-webkit-scrollbar-track { background: #050a08; }
         ::-webkit-scrollbar-thumb { background: #10b981; }
         
+        /* Scroll Margin offsets the tall sticky nav when clicking links */
+        section, #agents, #delivery {
+            scroll-margin-top: 160px; 
+        }
+
         /* Terminal Cursor */
         .terminal-cursor {
             display: inline-block;
@@ -86,64 +91,40 @@
     <div class="pointer-events-none fixed inset-0 z-50 h-32 w-full bg-gradient-to-b from-transparent via-brand-emerald/10 to-transparent opacity-50 animate-scanline"></div>
     <div class="fixed inset-0 z-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMTYsIDE4NSwgMTI5LCAwLjE1KSIvPjwvc3ZnPg==')] opacity-20 pointer-events-none"></div>
 
-    <nav class="fixed top-0 left-0 w-full z-[100] bg-[#020504]/90 backdrop-blur-xl border-b border-brand-emerald/20 transition-all">
-        <div class="w-[95%] max-w-[160rem] mx-auto px-3 md:px-6 h-24 flex items-center justify-between">
+    <nav class="fixed top-0 left-0 w-full z-[100] bg-[#020504]/60 backdrop-blur-xl border-b border-brand-emerald/20 transition-all h-32">
+        <div class="w-[95%] max-w-[160rem] mx-auto px-6 h-full grid grid-cols-3 items-center">
             
-            <div class="text-3xl md:text-4xl lg:text-5xl font-black tracking-tighter uppercase drop-shadow-2xl cursor-default">
+            <div class="justify-self-start hidden xl:flex items-center space-x-3 px-6 py-3 rounded-full border border-brand-emerald/30 bg-[#020504]/80 shadow-[0_0_20px_rgba(16,185,129,0.1)]">
+                <span class="w-3 h-3 rounded-full bg-brand-emerald animate-pulse-fast"></span>
+                <span class="text-sm font-mono text-brand-emerald uppercase tracking-widest font-bold">Greater Noida Sector Live</span>
+            </div>
+
+            <div class="justify-self-center text-4xl lg:text-5xl xl:text-6xl font-black tracking-tighter uppercase drop-shadow-2xl cursor-default">
                 Intent<span class="text-transparent bg-clip-text bg-gradient-to-br from-brand-emerald to-teal-700">Core</span>
             </div>
             
-            <div class="hidden lg:flex items-center justify-center space-x-12">
-                <a href="#pipeline-section" class="text-base lg:text-lg font-bold text-gray-300 hover:text-white transition-colors uppercase tracking-widest flex items-center group">
-                    <span class="w-1.5 h-1.5 rounded-full bg-brand-emerald mr-2 opacity-0 group-hover:opacity-100 transition-opacity"></span>
-                    Architecture
-                </a>
-                <a href="#cards-container" class="text-base lg:text-lg font-bold text-gray-300 hover:text-white transition-colors uppercase tracking-widest flex items-center group">
-                    <span class="w-1.5 h-1.5 rounded-full bg-brand-emerald mr-2 opacity-0 group-hover:opacity-100 transition-opacity"></span>
-                    Agents
-                </a>
-                <a href="#strategy-section" class="text-base lg:text-lg font-bold text-gray-300 hover:text-white transition-colors uppercase tracking-widest flex items-center group">
-                    <span class="w-1.5 h-1.5 rounded-full bg-brand-emerald mr-2 opacity-0 group-hover:opacity-100 transition-opacity"></span>
-                    15% Strategy
-                </a>
-                <a href="#agent-delivery" class="text-base lg:text-lg font-bold text-gray-300 hover:text-white transition-colors uppercase tracking-widest flex items-center group">
-                    <span class="w-1.5 h-1.5 rounded-full bg-brand-emerald mr-2 opacity-0 group-hover:opacity-100 transition-opacity"></span>
-                    Delivery
-                </a>
+            <div class="justify-self-end hidden lg:flex items-center space-x-2 xl:space-x-4">
+                <a href="#architecture" class="nav-link px-6 py-3 rounded-full text-lg xl:text-xl font-black text-gray-400 hover:text-white transition-all duration-300 uppercase tracking-widest" data-target="architecture">Architecture</a>
+                <a href="#agents" class="nav-link px-6 py-3 rounded-full text-lg xl:text-xl font-black text-gray-400 hover:text-white transition-all duration-300 uppercase tracking-widest" data-target="agents">Agents</a>
+                <a href="#strategy" class="nav-link px-6 py-3 rounded-full text-lg xl:text-xl font-black text-gray-400 hover:text-white transition-all duration-300 uppercase tracking-widest" data-target="strategy">15% Strategy</a>
+                <a href="#delivery" class="nav-link px-6 py-3 rounded-full text-lg xl:text-xl font-black text-gray-400 hover:text-white transition-all duration-300 uppercase tracking-widest" data-target="delivery">Delivery</a>
             </div>
 
-            <div class="hidden md:inline-flex items-center space-x-3 px-5 py-2 rounded-full border border-brand-emerald/30 bg-brand-emerald/10">
-                <span class="w-2.5 h-2.5 rounded-full bg-brand-emerald animate-pulse-fast"></span>
-                <span class="text-xs font-mono text-brand-emerald uppercase tracking-widest">Greater Noida Sector Live</span>
-            </div>
-            
         </div>
     </nav>
 
-    <header class="relative pt-32 w-full flex flex-col items-center justify-start overflow-hidden border-b border-brand-emerald/20 z-10">
-        
-        <div class="relative z-10 flex flex-col items-center justify-center px-4 w-full mb-10 mt-4">
-            <h1 class="text-6xl md:text-7xl lg:text-8xl font-black tracking-tighter uppercase drop-shadow-2xl leading-none text-center">
-                Intent<span class="text-transparent bg-clip-text bg-gradient-to-br from-brand-emerald to-teal-700">Core</span>
-            </h1>
-            <p class="mt-6 text-brand-emerald font-mono uppercase tracking-[0.3em] text-sm md:text-base text-center">
-                Autonomous Lead Origination Engine
-            </p>
-        </div>
-
-        <div class="relative z-20 w-full aspect-video border-y border-brand-emerald/30 shadow-[0_0_80px_-15px_rgba(16,185,129,0.3)] bg-black group overflow-hidden">
-            <video autoplay loop muted playsinline class="w-full h-full object-cover">
-                <source src="https://res.cloudinary.com/ddritqes2/video/upload/v1775953087/prospect-video_nvc9iy.mp4" type="video/mp4">
-            </video>
-            <div class="absolute inset-0 bg-gradient-to-b from-brand-dark/20 via-transparent to-brand-dark/40 pointer-events-none"></div>
-            <div class="absolute top-6 left-6 flex space-x-2">
-                <div class="w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
-                <span class="text-xs font-mono text-white tracking-widest bg-black/60 px-3 py-0.5 rounded backdrop-blur-md border border-white/20">REC // LIVE NEURAL FEED</span>
-            </div>
+    <header class="relative pt-32 w-full aspect-video border-b border-brand-emerald/30 shadow-[0_0_80px_-15px_rgba(16,185,129,0.3)] bg-black group overflow-hidden" id="home">
+        <video autoplay loop muted playsinline class="w-full h-full object-cover">
+            <source src="https://res.cloudinary.com/ddritqes2/video/upload/v1775953087/prospect-video_nvc9iy.mp4" type="video/mp4">
+        </video>
+        <div class="absolute inset-0 bg-gradient-to-b from-brand-dark/20 via-transparent to-brand-dark/40 pointer-events-none"></div>
+        <div class="absolute top-6 left-6 flex space-x-2">
+            <div class="w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
+            <span class="text-xs font-mono text-white tracking-widest bg-black/60 px-3 py-0.5 rounded backdrop-blur-md border border-white/20">REC // LIVE NEURAL FEED</span>
         </div>
     </header>
 
-    <section class="pt-24 pb-32 px-3 md:px-6 relative bg-brand-dark z-10" id="pipeline-section">
+    <section class="pt-32 pb-32 px-3 md:px-6 relative bg-brand-dark z-10" id="architecture">
         <div class="w-[95%] max-w-[160rem] mx-auto">
             
             <div class="grid grid-cols-1 xl:grid-cols-2 gap-16 xl:gap-32 items-stretch mb-32">
@@ -207,7 +188,7 @@
                 </div>
             </div>
             
-            <div class="relative w-full" id="cards-container">
+            <div class="relative w-full pb-10 pt-10" id="agents">
                 <svg id="arrow-canvas" class="absolute inset-0 w-full h-full pointer-events-none z-0" style="overflow: visible;"></svg>
 
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-x-16 xl:gap-x-32 gap-y-24 relative z-10 px-2">
@@ -254,7 +235,7 @@
                         </div>
                         <h3 class="text-lg font-black text-white text-center mb-3 tracking-widest uppercase w-full">AGENT V <span class="text-brand-emerald mx-1">-</span> QA VALIDATOR</h3>
                         <p class="text-white font-bold text-sm leading-relaxed text-center mb-6 flex-grow">Final gatekeeper. Assesses completeness and loan justification logic.</p>
-                        <div class="w-full bg-brand-emerald text-black text-center font-black tracking-widest rounded-lg py-2.5 text-[11px] mt-auto">EXECUTE EXPORT</div>
+                        <div class="w-full bg-brand-emerald hover:bg-white transition-colors text-black text-center font-black tracking-widest rounded-lg py-2.5 text-[11px] mt-auto cursor-pointer">EXECUTE EXPORT</div>
                     </div>
 
                     <div id="agent-e" class="card-3d delay-5 p-6 bg-[#0a100d] border border-white/10 rounded-2xl w-full max-w-[280px] mx-auto relative group flex flex-col items-center">
@@ -280,52 +261,53 @@
                             <span class="font-mono text-[10px] text-gray-400 tracking-wider">Identity Resolved</span>
                         </div>
                     </div>
+                </div>
+            </div>
+            
+            <div id="delivery" class="relative w-full flex justify-center pb-12 pt-24">
+                <div id="agent-delivery" class="card-3d delay-7 p-8 bg-[#030605] border border-brand-emerald/40 rounded-2xl w-full max-w-[450px] relative group shadow-[0_0_50px_-5px_rgba(16,185,129,0.2)] flex flex-col items-center">
+                    <h3 class="text-2xl font-black text-white text-center mb-2 tracking-widest uppercase">
+                        <span class="text-brand-emerald">🚀</span> PAYLOAD DISPATCHED
+                    </h3>
+                    <p class="text-gray-400 font-bold text-sm leading-relaxed text-center mb-6">
+                        Excel Leads + Batch Summary Delivered to User
+                    </p>
+                    
+                    <div class="flex flex-col items-center w-full mt-auto bg-[#0a100d] py-6 px-4 rounded-xl border border-white/5">
+                        <div class="flex flex-col items-center group mb-2">
+                            <div class="w-14 h-14 bg-white/5 rounded-full flex items-center justify-center border border-white/10 group-hover:border-green-500 transition-colors">
+                                <svg viewBox="0 0 24 24" class="w-7 h-7 text-green-500" fill="currentColor"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+                            </div>
+                            <span class="text-[11px] mt-3 font-bold text-gray-400 uppercase tracking-widest">Excel CSV</span>
+                        </div>
 
-                    <div id="agent-delivery" class="card-3d delay-7 p-8 bg-[#030605] border border-brand-emerald/40 rounded-2xl w-full max-w-[450px] mx-auto relative group shadow-[0_0_50px_-5px_rgba(16,185,129,0.2)] flex flex-col items-center col-span-1 lg:col-span-3 mt-12">
-                        <h3 class="text-2xl font-black text-white text-center mb-2 tracking-widest uppercase">
-                            <span class="text-brand-emerald">🚀</span> PAYLOAD DISPATCHED
-                        </h3>
-                        <p class="text-gray-400 font-bold text-sm leading-relaxed text-center mb-6">
-                            Excel Leads + Batch Summary Delivered to User
-                        </p>
-                        
-                        <div class="flex flex-col items-center w-full mt-auto bg-[#0a100d] py-6 px-4 rounded-xl border border-white/5">
-                            <div class="flex flex-col items-center group mb-2">
-                                <div class="w-14 h-14 bg-white/5 rounded-full flex items-center justify-center border border-white/10 group-hover:border-green-500 transition-colors">
-                                    <svg viewBox="0 0 24 24" class="w-7 h-7 text-green-500" fill="currentColor"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+                        <div class="flex justify-center items-center w-full space-x-16 my-2">
+                            <div class="text-brand-emerald font-black text-2xl animate-pulse">↙</div>
+                            <div class="text-brand-emerald font-black text-2xl animate-pulse">↘</div>
+                        </div>
+
+                        <div class="flex items-center justify-between w-full px-8 mt-2">
+                            <div class="flex flex-col items-center group">
+                                <div class="w-14 h-14 bg-white/5 rounded-full flex items-center justify-center border border-white/10 group-hover:border-blue-400 transition-colors">
+                                    <svg viewBox="0 0 24 24" class="w-7 h-7 text-blue-400" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.295-.6.295-.002 0-.003 0-.005 0l.213-3.054 5.56-5.022c.24-.213-.054-.334-.373-.121l-6.869 4.326-2.96-.924c-.64-.203-.658-.64.135-.954l11.566-4.458c.538-.196 1.006.128.832.94z"/></svg>
                                 </div>
-                                <span class="text-[11px] mt-3 font-bold text-gray-400 uppercase tracking-widest">Excel CSV</span>
+                                <span class="text-[11px] mt-3 font-bold text-gray-400 uppercase tracking-widest text-center">Telegram<br/>Bot</span>
                             </div>
 
-                            <div class="flex justify-center items-center w-full space-x-16 my-2">
-                                <div class="text-brand-emerald font-black text-2xl animate-pulse">↙</div>
-                                <div class="text-brand-emerald font-black text-2xl animate-pulse">↘</div>
-                            </div>
-
-                            <div class="flex items-center justify-between w-full px-8 mt-2">
-                                <div class="flex flex-col items-center group">
-                                    <div class="w-14 h-14 bg-white/5 rounded-full flex items-center justify-center border border-white/10 group-hover:border-blue-400 transition-colors">
-                                        <svg viewBox="0 0 24 24" class="w-7 h-7 text-blue-400" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.295-.6.295-.002 0-.003 0-.005 0l.213-3.054 5.56-5.022c.24-.213-.054-.334-.373-.121l-6.869 4.326-2.96-.924c-.64-.203-.658-.64.135-.954l11.566-4.458c.538-.196 1.006.128.832.94z"/></svg>
-                                    </div>
-                                    <span class="text-[11px] mt-3 font-bold text-gray-400 uppercase tracking-widest text-center">Telegram<br/>Bot</span>
-                                </div>
-
-                                <div class="flex flex-col items-center group">
-                                    <div class="w-14 h-14 bg-white/5 rounded-full flex items-center justify-center border border-white/10 group-hover:border-green-400 transition-colors">
-                                        <svg viewBox="0 0 24 24" class="w-7 h-7 text-green-400" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.305-.885-.653-1.482-1.46-1.656-1.758-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+                            <div class="flex flex-col items-center group">
+                                <div class="w-14 h-14 bg-white/5 rounded-full flex items-center justify-center border border-white/10 group-hover:border-green-400 transition-colors">
+                                    <svg viewBox="0 0 24 24" class="w-7 h-7 text-green-400" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.305-.885-.653-1.482-1.46-1.656-1.758-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
                                     </div>
                                     <span class="text-[11px] mt-3 font-bold text-gray-400 uppercase tracking-widest text-center">WhatsApp</span>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                </div>
             </div>
         </div>
     </section>
 
-    <section class="py-24 px-3 md:px-6 border-t border-white/5 bg-[#030605] z-10 relative" id="strategy-section">
+    <section class="py-24 px-3 md:px-6 border-t border-white/5 bg-[#030605] z-10 relative" id="strategy">
         <div class="w-[95%] max-w-[160rem] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
                 <div class="text-brand-emerald font-mono text-sm mb-4">THE FINANCIAL EDGE</div>
@@ -374,9 +356,34 @@
     </section>
 
     <script>
-        // 1. TERMINAL LOGIC
+        // 1. SCROLL SPY FOR NAVIGATION HIGHLIGHTING (Inverted Active Colors)
+        const sections = document.querySelectorAll('section, header, #agents, #delivery');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= (sectionTop - 300)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                // Reset all to default
+                link.classList.remove('bg-white', 'text-brand-emerald', 'shadow-[0_0_20px_rgba(16,185,129,0.3)]');
+                link.classList.add('text-gray-400', 'hover:text-white');
+                
+                // Add INVERTED colors to active link
+                if (link.dataset.target === current) {
+                    link.classList.remove('text-gray-400', 'hover:text-white');
+                    link.classList.add('bg-white', 'text-brand-emerald', 'shadow-[0_0_20px_rgba(16,185,129,0.3)]');
+                }
+            });
+        });
+
+        // 2. TERMINAL TYPEWRITER LOGIC
         const terminal = document.getElementById('terminal-output');
-        
         const logs = [
             "> Initiating Multi-Agent IntentCore Pipeline...",
             "> Calling Agent S: Harvesting OSINT triggers...",
@@ -419,27 +426,30 @@
             }
         }
 
-        // 2. LIVE SVG ARROW ROUTING ENGINE (RESTORED)
+        // 3. GUARANTEED LIVE SVG ARROW ROUTING ENGINE
         let loopTimeout;
         
         function runArrowSequence() {
-            if(window.innerWidth < 1024) return;
+            if(window.innerWidth < 768) return;
 
             const svg = document.getElementById('arrow-canvas');
+            if(!svg) return;
             svg.innerHTML = ''; 
             
-            const containerRect = document.getElementById('cards-container').getBoundingClientRect();
+            const svgRect = svg.getBoundingClientRect();
 
             function getCenter(elId) {
                 const el = document.getElementById(elId);
+                if(!el) return {x:0, y:0, top:0, bottom:0, left:0, right:0};
                 const rect = el.getBoundingClientRect();
+                
                 return {
-                    x: rect.left - containerRect.left + rect.width / 2,
-                    y: rect.top - containerRect.top + rect.height / 2,
-                    top: rect.top - containerRect.top,
-                    bottom: rect.top - containerRect.top + rect.height,
-                    left: rect.left - containerRect.left,
-                    right: rect.left - containerRect.left + rect.width
+                    x: (rect.left - svgRect.left) + (rect.width / 2),
+                    y: (rect.top - svgRect.top) + (rect.height / 2),
+                    top: rect.top - svgRect.top,
+                    bottom: rect.top - svgRect.top + rect.height,
+                    left: rect.left - svgRect.left,
+                    right: rect.left - svgRect.left + rect.width
                 };
             }
 
@@ -461,6 +471,7 @@
                 path.setAttribute('stroke', color);
                 path.setAttribute('fill', 'none');
                 path.setAttribute('stroke-width', '4'); 
+                path.setAttribute('stroke-linecap', 'round'); 
                 
                 const markerId = `arrowhead-${Math.random().toString(36).substr(2,9)}`;
                 const marker = document.createElementNS('http://www.w3.org/2000/svg', 'marker');
@@ -483,75 +494,74 @@
                 path.setAttribute('marker-end', `url(#${markerId})`);
                 svg.appendChild(path);
 
-                const length = path.getTotalLength() + 50;
-                path.style.strokeDasharray = length;
-                path.style.strokeDashoffset = length;
-                
-                path.getBoundingClientRect(); 
-
-                // Text Label Data-Flow Logic
-                let textNode = null;
-                if (labelText) {
-                    textNode = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-                    textNode.setAttribute('fill', '#ffffff');
-                    textNode.setAttribute('class', 'svg-label');
+                requestAnimationFrame(() => {
+                    const length = path.getTotalLength() + 50;
+                    path.style.strokeDasharray = length;
+                    path.style.strokeDashoffset = length;
                     
-                    let textX = (startX + endX) / 2;
-                    let textY = (startY + endY) / 2;
-                    const lines = labelText.split('|');
-                    
-                    if (curveType === 'right') {
-                        textX = Math.max(startX, endX) + (curveOffset / 2) + 20;
-                        textNode.setAttribute('text-anchor', 'start');
-                    } else if (curveType === 'left') {
-                        textX = Math.min(startX, endX) - (curveOffset / 2) - 20;
-                        textNode.setAttribute('text-anchor', 'end');
-                    } else if (curveType === 'route-down-right') {
-                        textX = (startX + endX) / 2;
-                        textY = startY + 12; 
-                        textNode.setAttribute('text-anchor', 'middle');
-                    } else {
-                        if (Math.abs(startX - endX) < 50) {
-                            textX += 20;
+                    let textNode = null;
+                    if (labelText) {
+                        textNode = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                        textNode.setAttribute('fill', '#ffffff');
+                        textNode.setAttribute('class', 'svg-label');
+                        
+                        let textX = (startX + endX) / 2;
+                        let textY = (startY + endY) / 2;
+                        const lines = labelText.split('|');
+                        
+                        if (curveType === 'right') {
+                            textX = Math.max(startX, endX) + (curveOffset / 2) + 20;
                             textNode.setAttribute('text-anchor', 'start');
-                        } else {
+                        } else if (curveType === 'left') {
+                            textX = Math.min(startX, endX) - (curveOffset / 2) - 20;
+                            textNode.setAttribute('text-anchor', 'end');
+                        } else if (curveType === 'route-down-right') {
+                            textX = (startX + endX) / 2;
+                            textY = startY + 12; 
                             textNode.setAttribute('text-anchor', 'middle');
-                            const fontSize = 12;
-                            const lineSpacingEm = 1.3;
-                            const totalHeightPx = (lines.length - 1) * lineSpacingEm * fontSize;
-                            textY -= (15 + totalHeightPx); 
+                        } else {
+                            if (Math.abs(startX - endX) < 50) {
+                                textX += 20;
+                                textNode.setAttribute('text-anchor', 'start');
+                            } else {
+                                textNode.setAttribute('text-anchor', 'middle');
+                                const fontSize = 13;
+                                const lineSpacingEm = 1.3;
+                                const totalHeightPx = (lines.length - 1) * lineSpacingEm * fontSize;
+                                textY -= (15 + totalHeightPx); 
+                            }
                         }
+
+                        lines.forEach((line, idx) => {
+                            const tspan = document.createElementNS('http://www.w3.org/2000/svg', 'tspan');
+                            tspan.textContent = line.trim();
+                            tspan.setAttribute('x', textX);
+                            tspan.setAttribute('dy', idx === 0 ? '0' : '1.3em');
+                            textNode.appendChild(tspan);
+                        });
+                        
+                        textNode.setAttribute('y', textY);
+                        svg.appendChild(textNode);
                     }
 
-                    lines.forEach((line, idx) => {
-                        const tspan = document.createElementNS('http://www.w3.org/2000/svg', 'tspan');
-                        tspan.textContent = line.trim();
-                        tspan.setAttribute('x', textX);
-                        tspan.setAttribute('dy', idx === 0 ? '0' : '1.3em');
-                        textNode.appendChild(tspan);
-                    });
-                    
-                    textNode.setAttribute('y', textY);
-                    svg.appendChild(textNode);
-                }
+                    setTimeout(() => {
+                        path.style.transition = 'stroke-dashoffset 1.5s ease-in-out';
+                        path.style.strokeDashoffset = '0';
+                        
+                        if (dashPattern !== 'none') {
+                            setTimeout(() => {
+                                path.style.transition = 'none';
+                                path.setAttribute('stroke-dasharray', dashPattern);
+                            }, 1500); 
+                        }
 
-                setTimeout(() => {
-                    path.style.transition = 'stroke-dashoffset 1.5s ease-in-out';
-                    path.style.strokeDashoffset = '0';
-                    
-                    if (dashPattern !== 'none') {
-                        setTimeout(() => {
-                            path.style.transition = 'none';
-                            path.setAttribute('stroke-dasharray', dashPattern);
-                        }, 1500); 
-                    }
-
-                    if(textNode) {
-                        setTimeout(() => {
-                            textNode.style.opacity = '1';
-                        }, 1200); 
-                    }
-                }, delay);
+                        if(textNode) {
+                            setTimeout(() => {
+                                textNode.style.opacity = '1';
+                            }, 1200); 
+                        }
+                    }, delay);
+                });
             }
 
             const s = getCenter('agent-s');
@@ -561,6 +571,8 @@
             const e = getCenter('agent-e');
             const v = getCenter('agent-v');
             const delivery = getCenter('agent-delivery');
+
+            if(s.x === 0) return; // Failsafe if elements aren't loaded
 
             // Draw Forward Flow
             drawAnimatedPath(s.right, s.y, t.left, t.y, '#10b981', 'none', 500, 'none', 0, 'All Ticket Size Leads'); 
@@ -572,7 +584,7 @@
             // Delivery Arrow
             drawAnimatedPath(v.x, v.bottom, delivery.x, delivery.top, '#10b981', 'none', 8000, 'route-down-right', 0, 'Batch Summary & | Excel Leads Payload');
 
-            // Draw Loopbacks
+            // Draw Outer Loopbacks
             drawAnimatedPath(l.right, l.y, m.right, m.y, '#eab308', '8,8', 9500, 'right', 120, 'Lead Discarded | Next Lead Required');
             drawAnimatedPath(v.left, v.y, s.left, s.y, '#ef4444', '8,8', 11000, 'left', 120, 'Self Healing & | Intent Validation');
 
@@ -585,7 +597,9 @@
         // Initialize Scripts
         document.addEventListener('DOMContentLoaded', () => {
             setTimeout(appendTypeWriter, 1000);
-            setTimeout(runArrowSequence, 2000); 
+            
+            // DELAY BY 3.5s to ensure 3D CSS animation finishes before calculating arrow math
+            setTimeout(runArrowSequence, 3500); 
         });
 
         window.addEventListener('resize', () => {
