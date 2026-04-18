@@ -1,23 +1,62 @@
-<header class="relative min-h-[90vh] flex items-center overflow-hidden">
-    <div class="absolute inset-0 z-0">
-        <video id="keeperVideo" autoplay loop muted playsinline class="w-full h-full object-cover opacity-50">
-            <source src="https://res.cloudinary.com/ddritqes2/video/upload/v1775953084/wicketkeeper-video_qcjtuf.mp4" type="video/mp4">
-        </video>
-        <div class="absolute inset-0 bg-gradient-to-r from-[#050505] via-transparent to-[#050505]/80"></div>
-    </div>
-
-    <div class="max-w-7xl mx-auto px-4 relative z-10 w-full flex justify-end">
-        <div class="relative group max-w-lg">
-            <div class="absolute inset-0 bg-purple-600/10 blur-3xl rounded-full scale-150 opacity-50"></div>
-            <div class="relative bg-[#0a0a0a]/90 backdrop-blur-2xl border border-white/10 p-10 rounded-[2rem] shadow-2xl">
-                <img src="https://res.cloudinary.com/ddritqes2/image/upload/v1775953424/hero-image-bg-removed_jn60nc.png" class="absolute -top-20 -left-20 w-40 opacity-40 pointer-events-none" />
-                <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">Zero <span class="text-purple-500">Intervention</span> Ingestion.</h1>
-                <ul class="space-y-4 mb-8 text-gray-300">
-                    <li class="flex items-start"><span class="text-purple-500 mr-2">✦</span><strong>The Ingestion Shield:</strong> Deploy a three-gate deterministic bodyguard for your Bronze layer.</li>
-                    <li class="flex items-start"><span class="text-purple-500 mr-2">✦</span><strong>AI Auto-Repair:</strong> JARVIS heals malformed data in real-time for 0% downtime.</li>
-                </ul>
-                <button class="w-full bg-green-600 hover:bg-green-500 text-white font-bold py-4 rounded-xl shadow-lg transition-all">Setup Ingestion Shield</button>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wicket Keeper | Zero Intervention Ingestion</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        html { scroll-behavior: smooth; }
+        body { overflow-x: hidden; background-color: #050a08; }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-thumb { background: #10b981; }
+        .nav-active { background-color: #064e3b !important; color: #ffffff !important; }
+    </style>
+</head>
+<body class="text-white font-sans antialiased">
+    <nav class="fixed top-0 left-0 w-full z-[100] bg-[#020504]/20 backdrop-blur-xl border-b border-brand-emerald/20 h-[148px] flex items-center">
+        <div class="w-[95%] max-w-[160rem] mx-auto px-6 flex items-center justify-between">
+            <div class="flex flex-col items-start w-fit">
+                <div class="text-5xl lg:text-7xl font-black tracking-tighter uppercase mb-2">
+                    WICKET<span class="text-brand-emerald">KEEPER</span>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="px-4 py-1.5 rounded-full bg-[#064e3b] text-[10px] font-bold uppercase text-white">Bronze-Layer Sentry</div>
+                    <div class="px-4 py-1.5 rounded-full bg-[#064e3b] text-[10px] font-bold uppercase text-white">Self-Healing Data</div>
+                </div>
+            </div>
+            <div class="hidden lg:flex items-center space-x-6">
+                <a href="index.html" class="px-6 py-2.5 rounded-full text-xl font-black text-gray-400 hover:text-white uppercase">Home</a>
+                <a href="#" class="nav-active px-6 py-2.5 rounded-full text-xl font-black uppercase">Ingestion Shield</a>
             </div>
         </div>
-    </div>
-</header>
+    </nav>
+
+    <header class="relative pt-[148px] w-full aspect-video border-b border-brand-emerald/30 bg-black overflow-hidden">
+        <video autoplay loop muted playsinline class="w-full h-full object-cover">
+            <source src="https://res.cloudinary.com/ddritqes2/video/upload/v1775953084/wicketkeeper-video_qcjtuf.mp4" type="video/mp4">
+        </video>
+        <div class="absolute inset-0 bg-gradient-to-t from-brand-dark via-transparent to-transparent"></div>
+    </header>
+
+    <section class="pt-32 pb-24 px-6 relative bg-brand-dark">
+        <div class="w-[95%] max-w-[160rem] mx-auto grid grid-cols-1 xl:grid-cols-2 gap-20">
+            <div class="flex flex-col justify-center">
+                <h2 class="text-5xl lg:text-7xl font-black uppercase mb-12 leading-tight">Zero Intervention <br/><span class="text-brand-emerald">Ingestion</span></h2>
+                <div class="space-y-12">
+                    <div><h4 class="text-2xl font-bold mb-1">The Ingestion Shield</h4><p class="text-gray-400">Deploy a three-gate deterministic bodyguard for your Bronze layer.</p></div>
+                    <div><h4 class="text-2xl font-bold mb-1">AI Auto-Repair</h4><p class="text-gray-400">JARVIS heals malformed data in real-time for 0% downtime.</p></div>
+                </div>
+            </div>
+            <div class="bg-[#020504]/90 border border-brand-emerald/40 rounded-3xl p-10 min-h-[400px] flex items-center">
+                <div class="text-xl font-mono text-brand-emerald space-y-3">
+                    <div>> MONITORING BATCH_ID_88291...</div>
+                    <div class="text-yellow-500">> DETECTED SCHEMA DRIFT IN COLUMN 'TOTAL_VAL'</div>
+                    <div class="text-brand-emerald">> JARVIS: AUTO-MAPPING RECONSTRUCTION COMPLETE</div>
+                    <div class="text-white font-bold">> STATUS: PIPELINE GREEN.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
