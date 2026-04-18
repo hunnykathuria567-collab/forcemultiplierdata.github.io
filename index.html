@@ -3,13 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Force Multiplier | Data Command Center</title>
+    <title>Force Multiplier | Enterprise Data Command</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    colors: { brand: { dark: '#050a08', emerald: '#10b981', deepGreen: '#064e3b' } }
+                    colors: {
+                        brand: {
+                            dark: '#050a08',
+                            emerald: '#10b981',
+                            deepGreen: '#064e3b',
+                        }
+                    },
+                    animation: {
+                        'pulse-fast': 'pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'scanline': 'scan 8s linear infinite',
+                    },
+                    keyframes: {
+                        scan: { '0%': { transform: 'translateY(-100%)' }, '100%': { transform: 'translateY(100vh)' } }
+                    }
                 }
             }
         }
@@ -18,65 +31,125 @@
         html { scroll-behavior: smooth; }
         body { overflow-x: hidden; background-color: #050a08; }
         ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #050a08; }
         ::-webkit-scrollbar-thumb { background: #10b981; }
-        section { scroll-margin-top: 180px; }
-        .nav-active { background-color: #064e3b !important; color: #ffffff !important; border-color: #10b981 !important; }
+        
+        section { scroll-margin-top: 200px; }
+
+        @keyframes popIn3D {
+            0% { opacity: 0; transform: perspective(1200px) translateZ(-600px) translateY(50px) scale(0.6) rotateX(15deg); }
+            100% { opacity: 1; transform: perspective(1200px) translateZ(0) translateY(0) scale(1) rotateX(0deg); }
+        }
+        .card-3d {
+            opacity: 0; 
+            animation: popIn3D 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+            box-shadow: 0 20px 40px -10px rgba(0,0,0,0.8), 0 0 20px -5px rgba(16,185,129,0.15);
+        }
+        
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+        .delay-4 { animation-delay: 0.8s; }
+
+        .nav-active {
+            background-color: #064e3b !important; 
+            color: #ffffff !important;
+            box-shadow: 0 0 15px rgba(16,185,129,0.2);
+            border-color: #10b981 !important;
+        }
     </style>
 </head>
-<body class="text-white font-sans antialiased">
+<body class="text-white font-sans antialiased selection:bg-brand-emerald selection:text-black">
+
+    <div class="pointer-events-none fixed inset-0 z-50 h-32 w-full bg-gradient-to-b from-transparent via-brand-emerald/10 to-transparent opacity-50 animate-scanline"></div>
+    <div class="fixed inset-0 z-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMTYsIDE4NSwgMTI5LCAwLjE1KSIvPjwvc3ZnPg==')] opacity-20 pointer-events-none"></div>
+
     <nav class="fixed top-0 left-0 w-full z-[100] bg-[#020504]/20 backdrop-blur-xl border-b border-brand-emerald/20 h-[148px] flex items-center">
         <div class="w-[95%] max-w-[160rem] mx-auto px-6 flex items-center justify-between">
+            
             <div class="flex flex-col items-start w-fit">
-                <div class="text-5xl lg:text-6xl xl:text-7xl font-black tracking-tighter uppercase mb-2">
-                    FORCE<span class="text-brand-emerald">MULTIPLIER</span>
+                <div class="text-5xl lg:text-6xl xl:text-7xl font-black tracking-tighter uppercase cursor-default mb-2 leading-none">
+                    FORCE<span class="text-transparent bg-clip-text bg-gradient-to-br from-brand-emerald to-teal-700">MULTIPLIER</span>
                 </div>
-                <div class="flex items-center space-x-4">
-                    <div class="flex items-center space-x-2 px-4 py-1.5 rounded-full bg-brand-deepGreen border border-brand-emerald/40">
-                        <span class="text-[10px] font-mono text-white uppercase tracking-widest font-bold">Noida</span>
-                    </div>
-                    <div class="flex items-center space-x-2 px-4 py-1.5 rounded-full bg-brand-deepGreen border border-brand-emerald/40">
-                        <span class="text-[10px] font-mono text-white uppercase tracking-widest font-bold">Radius 100 Km+</span>
-                    </div>
-                    <div class="flex items-center space-x-2 px-4 py-1.5 rounded-full bg-brand-deepGreen border border-brand-emerald/40">
-                        <span class="text-[10px] font-mono text-white uppercase tracking-widest font-bold">Enterprise Data Architecture</span>
-                    </div>
+                
+                <div class="flex items-center px-6 py-2 rounded-full bg-brand-deepGreen border border-brand-emerald/40 shadow-[0_0_20px_rgba(16,185,129,0.1)]">
+                    <span class="text-xs lg:text-sm font-mono text-white uppercase tracking-widest font-bold">
+                        [SYSTEM_ESTIMATE] Autonomous AI Orchestration = 35% Dev Maintenance Bandwidth Optimized
+                    </span>
                 </div>
             </div>
-            <div class="hidden lg:flex items-center space-x-6">
-                <a href="index.html" class="nav-link nav-active px-8 py-3 rounded-full text-xl font-black uppercase">Home</a>
-                <a href="platform-inspector.html" class="nav-link px-8 py-3 rounded-full text-xl font-black text-gray-400 hover:text-white uppercase">Inspector</a>
-                <a href="wicket-keeper.html" class="nav-link px-8 py-3 rounded-full text-xl font-black text-gray-400 hover:text-white uppercase">Wicket Keeper</a>
-                <a href="consulting.html" class="nav-link px-8 py-3 rounded-full text-xl font-black text-gray-400 hover:text-white uppercase">Consulting</a>
+            
+            <div class="hidden lg:flex items-center space-x-2 xl:space-x-4">
+                <a href="index.html" class="nav-link nav-active px-6 py-2.5 rounded-full text-lg xl:text-xl font-black transition-all duration-300 uppercase tracking-tighter border-2 border-transparent">Home</a>
+                <a href="platform-inspector.html" class="nav-link px-6 py-2.5 rounded-full text-lg xl:text-xl font-black text-gray-400 hover:text-white transition-all duration-300 uppercase tracking-tighter border-2 border-transparent">Platform Inspector</a>
+                <a href="wicket-keeper.html" class="nav-link px-6 py-2.5 rounded-full text-lg xl:text-xl font-black text-gray-400 hover:text-white transition-all duration-300 uppercase tracking-tighter border-2 border-transparent">Wicket Keeper</a>
+                <a href="prospect-pipeline.html" class="nav-link px-6 py-2.5 rounded-full text-lg xl:text-xl font-black text-gray-400 hover:text-white transition-all duration-300 uppercase tracking-tighter border-2 border-transparent">Prospect Pipeline</a>
+                <a href="consulting.html" class="nav-link px-6 py-2.5 rounded-full text-lg xl:text-xl font-black text-gray-400 hover:text-white transition-all duration-300 uppercase tracking-tighter border-2 border-transparent">Consulting</a>
             </div>
         </div>
     </nav>
 
     <header class="relative pt-[148px] w-full aspect-video border-b border-brand-emerald/30 bg-black overflow-hidden">
-        <video autoplay loop muted playsinline class="w-full h-full object-cover opacity-80">
+        <video autoplay loop muted playsinline class="w-full h-full object-cover opacity-70">
             <source src="https://res.cloudinary.com/ddritqes2/video/upload/v1775953080/platform-inspector-video_ujklav.mp4" type="video/mp4">
         </video>
         <div class="absolute inset-0 bg-gradient-to-t from-brand-dark via-transparent to-transparent"></div>
+        <div class="absolute inset-0 flex items-center justify-center">
+             <div class="text-center max-w-4xl px-6">
+                <h2 class="text-6xl md:text-8xl font-black uppercase mb-6 tracking-tight">Your Data Pipelines <br/><span class="text-brand-emerald">Leaking Money.</span></h2>
+                <p class="text-xl md:text-2xl text-gray-300 font-bold uppercase tracking-widest">We Plug the Holes Automatically.</p>
+             </div>
+        </div>
     </header>
 
-    <section class="py-32 px-6">
-        <div class="w-[95%] max-w-[160rem] mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
-            <a href="platform-inspector.html" class="p-10 bg-[#0a100d] border border-white/10 rounded-3xl hover:border-brand-emerald transition-all">
-                <h3 class="text-3xl font-black mb-4 uppercase">Platform Inspector</h3>
-                <p class="text-gray-400">Kill zombie compute clusters and stop the bleed.</p>
-            </a>
-            <a href="wicket-keeper.html" class="p-10 bg-[#0a100d] border border-white/10 rounded-3xl hover:border-brand-emerald transition-all">
-                <h3 class="text-3xl font-black mb-4 uppercase">Wicket Keeper</h3>
-                <p class="text-gray-400">Zero-intervention ingestion shield for Medallion layers.</p>
-            </a>
-            <a href="prospect-pipeline.html" class="p-10 bg-[#0a100d] border border-white/10 rounded-3xl hover:border-brand-emerald transition-all">
-                <h3 class="text-3xl font-black mb-4 uppercase">Prospect Pipeline</h3>
-                <p class="text-gray-400">Autonomous lead generation with 100% KDM verification.</p>
-            </a>
-            <a href="consulting.html" class="p-10 bg-[#0a100d] border border-white/10 rounded-3xl hover:border-brand-emerald transition-all">
-                <h3 class="text-3xl font-black mb-4 uppercase">Consulting</h3>
-                <p class="text-gray-400">High-end architecture strategy for agile AI startups.</p>
-            </a>
+    <section class="py-32 px-6 relative bg-brand-dark z-10">
+        <div class="w-[95%] max-w-[160rem] mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+                
+                <a href="platform-inspector.html" class="card-3d delay-1 p-10 bg-[#0a100d] border border-white/10 rounded-[2.5rem] flex flex-col items-center group hover:border-brand-emerald transition-all">
+                    <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center border-4 border-brand-emerald mb-8 group-hover:scale-110 transition-transform">
+                        <svg class="w-8 h-8 text-black" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                    </div>
+                    <h3 class="text-3xl font-black text-center mb-4 uppercase tracking-tighter">Platform Inspector</h3>
+                    <p class="text-white font-bold text-center text-lg leading-relaxed mb-8 flex-grow">Kill zombie compute clusters and stop the budget bleed.</p>
+                    <div class="text-brand-emerald font-black uppercase tracking-widest text-xs">Initialize Audit ➔</div>
+                </a>
+
+                <a href="wicket-keeper.html" class="card-3d delay-2 p-10 bg-[#0a100d] border border-white/10 rounded-[2.5rem] flex flex-col items-center group hover:border-brand-emerald transition-all">
+                    <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center border-4 border-brand-emerald mb-8 group-hover:scale-110 transition-transform">
+                        <svg class="w-8 h-8 text-black" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m5-4a12 12 0 11-12 18A12 12 0 013 9"></path></svg>
+                    </div>
+                    <h3 class="text-3xl font-black text-center mb-4 uppercase tracking-tighter">Wicket Keeper</h3>
+                    <p class="text-white font-bold text-center text-lg leading-relaxed mb-8 flex-grow">Autonomous ingestion shield for Gold-standard data layers.</p>
+                    <div class="text-brand-emerald font-black uppercase tracking-widest text-xs">Deploy Shield ➔</div>
+                </a>
+
+                <a href="prospect-pipeline.html" class="card-3d delay-3 p-10 bg-[#0a100d] border border-white/10 rounded-[2.5rem] flex flex-col items-center group hover:border-brand-emerald transition-all">
+                    <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center border-4 border-brand-emerald mb-8 group-hover:scale-110 transition-transform">
+                        <svg class="w-8 h-8 text-black" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                    </div>
+                    <h3 class="text-3xl font-black text-center mb-4 uppercase tracking-tighter">Prospect Pipeline</h3>
+                    <p class="text-white font-bold text-center text-lg leading-relaxed mb-8 flex-grow">Neural lead generation with verified MD/CEO direct data.</p>
+                    <div class="text-brand-emerald font-black uppercase tracking-widest text-xs">Launch Pipeline ➔</div>
+                </a>
+
+                <a href="consulting.html" class="card-3d delay-4 p-10 bg-[#0a100d] border border-white/10 rounded-[2.5rem] flex flex-col items-center group hover:border-brand-emerald transition-all">
+                    <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center border-4 border-brand-emerald mb-8 group-hover:scale-110 transition-transform">
+                        <svg class="w-8 h-8 text-black" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2"></path></svg>
+                    </div>
+                    <h3 class="text-3xl font-black text-center mb-4 uppercase tracking-tighter">Consulting</h3>
+                    <p class="text-white font-bold text-center text-lg leading-relaxed mb-8 flex-grow">High-end architecture strategy POCs for agile startups.</p>
+                    <div class="text-brand-emerald font-black uppercase tracking-widest text-xs">Book Discovery ➔</div>
+                </a>
+
+            </div>
         </div>
     </section>
+
+    <footer class="py-20 px-6 border-t border-white/10 bg-[#030605] text-center">
+        <div class="text-4xl font-black uppercase mb-4">FORCE<span class="text-brand-emerald">MULTIPLIER</span></div>
+        <p class="text-gray-500 font-mono text-sm tracking-widest uppercase">© 2026 Enterprise AI Orchestration Systems</p>
+    </footer>
+
 </body>
 </html>
