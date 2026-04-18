@@ -1,23 +1,55 @@
-<header class="relative min-h-[90vh] flex items-center overflow-hidden">
-    <div class="absolute inset-0 z-0">
-        <video id="consultingVideo" autoplay loop muted playsinline class="w-full h-full object-cover opacity-50">
-            <source src="https://res.cloudinary.com/ddritqes2/video/upload/v1775953076/boutique-consulting-video_uprtsg.mp4" type="video/mp4">
-        </video>
-        <div class="absolute inset-0 bg-gradient-to-r from-[#050505] via-transparent to-[#050505]/80"></div>
-    </div>
-
-    <div class="max-w-7xl mx-auto px-4 relative z-10 w-full flex justify-end">
-        <div class="relative group max-w-lg">
-            <div class="absolute inset-0 bg-purple-600/10 blur-3xl rounded-full scale-150 opacity-50"></div>
-            <div class="relative bg-[#0a0a0a]/90 backdrop-blur-2xl border border-white/10 p-10 rounded-[2rem] shadow-2xl">
-                <img src="https://res.cloudinary.com/ddritqes2/image/upload/v1775953424/hero-image-bg-removed_jn60nc.png" class="absolute -top-20 -left-20 w-40 opacity-40 pointer-events-none" />
-                <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">Elite Strategy. Boutique <span class="text-purple-500">Budgets.</span></h1>
-                <ul class="space-y-4 mb-8 text-gray-300">
-                    <li class="flex items-start"><span class="text-purple-500 mr-2">✦</span><strong>CTO Discovery:</strong> 90-minute protocol to untangle technical debt and map your future.</li>
-                    <li class="flex items-start"><span class="text-purple-500 mr-2">✦</span><strong>Medallion POC:</strong> High-end data architecture roadmaps tailored for agile AI startups.</li>
-                </ul>
-                <button class="w-full bg-yellow-600 hover:bg-yellow-500 text-white font-bold py-4 rounded-xl shadow-lg transition-all">Book the Roadmap</button>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulting | Elite Strategy. Boutique Budgets.</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        html { scroll-behavior: smooth; }
+        body { overflow-x: hidden; background-color: #050a08; }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-thumb { background: #10b981; }
+        .nav-active { background-color: #064e3b !important; color: #ffffff !important; }
+    </style>
+</head>
+<body class="text-white font-sans antialiased">
+    <nav class="fixed top-0 left-0 w-full z-[100] bg-[#020504]/20 backdrop-blur-xl border-b border-brand-emerald/20 h-[148px] flex items-center">
+        <div class="w-[95%] max-w-[160rem] mx-auto px-6 flex items-center justify-between">
+            <div class="flex flex-col items-start w-fit">
+                <div class="text-5xl lg:text-7xl font-black tracking-tighter uppercase mb-2">
+                    BOUTIQUE<span class="text-brand-emerald">CONSULTING</span>
+                </div>
+                <div class="px-6 py-2 rounded-full bg-[#064e3b] border border-brand-emerald/40 text-[10px] font-bold uppercase text-white mt-2">CTO as a Service</div>
+            </div>
+            <div class="hidden lg:flex items-center space-x-6">
+                <a href="index.html" class="px-6 py-2.5 rounded-full text-xl font-black text-gray-400 hover:text-white uppercase">Home</a>
+                <a href="#" class="nav-active px-6 py-2.5 rounded-full text-xl font-black uppercase">Roadmap</a>
             </div>
         </div>
-    </div>
-</header>
+    </nav>
+
+    <header class="relative pt-[148px] w-full aspect-video border-b border-brand-emerald/30 bg-black overflow-hidden">
+        <video autoplay loop muted playsinline class="w-full h-full object-cover">
+            <source src="https://res.cloudinary.com/ddritqes2/video/upload/v1775953076/boutique-consulting-video_uprtsg.mp4" type="video/mp4">
+        </video>
+        <div class="absolute inset-0 bg-gradient-to-t from-brand-dark via-transparent to-transparent"></div>
+    </header>
+
+    <section class="pt-32 pb-24 px-6 bg-brand-dark">
+        <div class="w-[95%] max-w-[160rem] mx-auto text-center">
+            <h2 class="text-6xl font-black uppercase mb-20 leading-tight">Elite Strategy. <span class="text-brand-emerald">Boutique Budgets.</span></h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div class="p-16 bg-[#0a100d] border border-white/5 rounded-3xl">
+                    <h4 class="text-3xl font-black mb-6 uppercase">CTO Discovery</h4>
+                    <p class="text-xl text-gray-400">90-minute protocol to untangle technical debt and map your future.</p>
+                </div>
+                <div class="p-16 bg-[#0a100d] border border-white/5 rounded-3xl">
+                    <h4 class="text-3xl font-black mb-6 uppercase">Medallion POC</h4>
+                    <p class="text-xl text-gray-400">High-end data architecture roadmaps tailored for agile AI startups.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
